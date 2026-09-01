@@ -20,14 +20,22 @@
 % --- Typography, Lists & Helpers ---
 \usepackage{enumitem}
 \usepackage{etoolbox}
+\usepackage{caption}
 \usepackage{pgffor}
 \usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
 
 % List formatting
 \renewcommand{\theenumi}{\alph{enumi}}
 \renewcommand{\labelenumi}{(\theenumi)}
 \setlist[itemize,2]{label=$\circ$}
-\setlist{topsep=3pt, itemsep=2pt, parsep=0pt}
+\setlist{
+    topsep=3pt,
+    itemsep=2pt,
+    parsep=0pt,
+    before=\leavevmode
+}
 
 % Paragraph layout: zero indentation, clean inter-paragraph glue
 \setlength{\parindent}{0pt}
@@ -122,9 +130,6 @@
 
 % Calligraphic collections
 \newcommand{\topo}{\mathcal{T}}
-\newcommand{\B}{\mathcal{B}}
-\newcommand{\cont}{\mathcal{C}}
-\renewcommand{\S}{\mathcal{S}}
 
 % Mathematical Operators
 \DeclareMathOperator{\re}{Re}
@@ -144,6 +149,7 @@
 \newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
 \newcommand{\set}[1]{\left\{ #1 \right\}}
 \newcommand{\closure}[2][3]{{}\mkern#1mu\overline{\mkern-#1mu#2}}
+\newcommand{\group}[1]{\langle #1 \rangle}
 
 % Symbols & Relations
 \newcommand{\noteq}{\neq}
@@ -181,7 +187,8 @@
     \refstepcounter{cnt}%
     \phantomsection\label{glo:\arabic{cnt}}%
     \newterm{\arabic{cnt}}{#1}{0}%
-    \begin{definition}\textbf{#1}%
+    \begin{definition}\textbf{#1}
+    
 }{%
     \end{definition}%
 }
@@ -191,7 +198,8 @@
     \refstepcounter{cnt}%
     \phantomsection\label{glo:\arabic{cnt}}%
     \newterm{\arabic{cnt}}{#1}{0}%
-    \begin{notations}\textbf{#1}%
+    \begin{notations}\textbf{#1}
+    
 }{%
     \end{notations}%
 }
