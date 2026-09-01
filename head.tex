@@ -1,0 +1,235 @@
+% --- Core Mathematical Packages ---
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bm}
+
+% --- Page Layout & Headers ---
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    margin=1in,
+    headheight=15pt
+}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\lhead{\emph{\nouppercase{\leftmark}}}
+
+% --- Typography, Lists & Helpers ---
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{pgffor}
+\usepackage{xcolor}
+
+% List formatting
+\renewcommand{\theenumi}{\alph{enumi}}
+\renewcommand{\labelenumi}{(\theenumi)}
+\setlist[itemize,2]{label=$\circ$}
+\setlist{topsep=3pt, itemsep=2pt, parsep=0pt}
+
+% Paragraph layout: zero indentation, clean inter-paragraph glue
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 2pt minus 1pt}
+
+% Document Metadata
+\author{ioshift}
+\date{\today}
+\title{\Huge\bfseries\ntitle}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Theorem Environments & Styling
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\numberwithin{equation}{subsection}
+
+% Custom Theorem Styles with built-in vertical glue
+\newtheoremstyle{notestyle_thm}
+  {6pt plus 2pt minus 1pt}  % Space above
+  {6pt plus 2pt minus 1pt}  % Space below
+  {\normalfont}             % Body font
+  {}                        % Indent amount
+  {\bfseries}               % Head font
+  {.}                       % Punctuation after head
+  { }                       % Space after head
+  {}                        % Head spec
+
+\newtheoremstyle{notestyle_remark}
+  {5pt plus 2pt minus 1pt}  % Space above
+  {5pt plus 2pt minus 1pt}  % Space below
+  {\normalfont}             % Body font
+  {}                        % Indent amount
+  {\bfseries}               % Head font
+  {.}                       % Punctuation after head
+  { }                       % Space after head
+  {}                        % Head spec
+
+% Numbered theorem-like environments
+\theoremstyle{notestyle_thm}
+\newtheorem{thm}{Theorem}[subsection]
+\renewcommand{\thethm}{%
+  \ifnum\value{subsection}=0
+    \thesection.\arabic{thm}%
+  \else
+    \thesubsection.\arabic{thm}%
+  \fi
+}
+
+\newtheorem{axiom}[thm]{Axiom}
+\newtheorem{conjecture}[thm]{Conjecture}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{eg}[thm]{Example}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{ex}[thm]{Exercise}
+\newtheorem{definition}[thm]{Definition}
+\newtheorem{notations}[thm]{Notation}
+
+% Unnumbered / Starred environments
+\theoremstyle{notestyle_remark}
+\newtheorem*{aim}{Aim}
+\newtheorem*{assumption}{Assumption}
+\newtheorem*{claim}{Claim}
+\newtheorem*{Defi}{Definition}
+\newtheorem*{fact}{Fact}
+\newtheorem*{law}{Law}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem*{rrule}{Rule}
+\newtheorem*{Prop}{Proposition}
+\newtheorem*{question}{Question}
+\newtheorem*{warning}{Warning}
+
+% Proof & Solution Environments
+\renewcommand{\proofname}{\textbf{Proof}}
+\newenvironment{sol}{\begin{proof}[\textbf{Solution}]}{\end{proof}}
+\newenvironment{counter}{\begin{proof}[\textbf{Counterexample}]}{\end{proof}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Mathematical Macros & Symbols
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Standard blackboard-bold sets
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\F}{\mathbb{F}}
+
+% Calligraphic collections
+\newcommand{\topo}{\mathcal{T}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\cont}{\mathcal{C}}
+\renewcommand{\S}{\mathcal{S}}
+
+% Mathematical Operators
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\interior}{Int}
+\DeclareMathOperator{\lcm}{lcm}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Bd}{Bd}
+\DeclareMathOperator{\card}{card}
+\DeclareMathOperator{\supp}{supp}
+
+% Delimiters & Accents
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\closure}[2][3]{{}\mkern#1mu\overline{\mkern-#1mu#2}}
+
+% Symbols & Relations
+\newcommand{\noteq}{\neq}
+\newcommand{\nexist}{\nexists}
+\newcommand{\aand}{\quad\text{and}\quad}
+\newcommand{\res}[1]{\!\mid_{#1}}
+\newcommand{\normal}{\unlhd}
+\renewcommand{\tt}[1]{\quad\text{#1}\quad}
+\renewcommand{\d}{\mathop{}\!\mathrm{d}}
+\renewcommand{\emptyset}{\varnothing}
+
+% Darboux / Riemann integrals
+\newcommand{\upint}{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\newcommand{\lowint}{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Automatic Definition & Concept Glossary Engine
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcounter{cnt}
+
+\newcommand{\newterm}[3]{%
+    \expandafter\gdef\csname term#1\endcsname{#2}%
+    \expandafter\gdef\csname cat#1\endcsname{#3}%
+}
+
+% Definition environment with automatic glossary registration
+\newenvironment{defi}[1]{%
+    \refstepcounter{cnt}%
+    \phantomsection\label{glo:\arabic{cnt}}%
+    \newterm{\arabic{cnt}}{#1}{0}%
+    \begin{definition}\textbf{#1}%
+}{%
+    \end{definition}%
+}
+
+% Notation environment with automatic glossary registration
+\newenvironment{notation}[1]{%
+    \refstepcounter{cnt}%
+    \phantomsection\label{glo:\arabic{cnt}}%
+    \newterm{\arabic{cnt}}{#1}{0}%
+    \begin{notations}\textbf{#1}%
+}{%
+    \end{notations}%
+}
+
+% Ad-hoc glossary elements and category headers
+\newcommand{\addelement}[1]{%
+    \refstepcounter{cnt}%
+    \phantomsection\label{glo:\arabic{cnt}}%
+    \newterm{\arabic{cnt}}{#1}{0}%
+}
+
+\newcommand{\addclass}[1]{%
+    \refstepcounter{cnt}%
+    \phantomsection\label{glo:\arabic{cnt}}%
+    \newterm{\arabic{cnt}}{#1}{1}%
+}
+
+% Glossary rendering command
+\newcommand{\printglossary}{%
+    \newpage
+    \section{Glossary}
+    \ifnum\value{cnt}>0
+      \foreach \x in {1,...,\arabic{cnt}} {%
+          \ifnum\csname cat\x\endcsname=0
+              \noindent\hyperref[glo:\x]{\csname term\x\endcsname}\par\addvspace{0.4em}%
+          \else
+              \ifnum\x>1
+                  \addvspace{1.2em}%
+              \fi
+              \noindent{\large\textbf{\csname term\x\endcsname}}\par\addvspace{0.6em}%
+          \fi
+      }%
+    \fi
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Hyperref (Loaded Last for Guaranteed Compatibility)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[colorlinks=true, linkcolor=red, citecolor=red, urlcolor=blue]{hyperref}
