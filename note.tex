@@ -28,6 +28,16 @@
         \end{itemize}
     \end{defi}
     \bigskip
+
+    \begin{defi}{Homomorphism and Isomorphism}
+        Let $\group{G_1,*_1}$ and $\group{G_2,*_2}$ be groups and $f:G_1\to G_2$. We say that $f$ is a \textbf{group isomorphism} if
+        \begin{itemize}
+            \item $f$ is bijective.
+            \item For all $a,b\in G$, $f(a*_1b)=f(a)*_2f(b)$.
+        \end{itemize}
+        $f$ is a \textbf{group homomorphism} if the second condition is satisfied.
+    \end{defi}
+    \bigskip
     
     \begin{defi}{Permutation and Symmetric Group}
         Let $A \noteq \emptyset$. A \textbf{permutation} of $A$ is a bijection $\sigma \colon A \to A$. The \textbf{symmetric group} on $A$ is
@@ -363,6 +373,244 @@
         $\impliedby:$ Let $G\cong\Z_p$, then $G=\group{a}$ and $\abs{G}=p$. If $H\leq G$, then $H=\group{a^s}=\group{a^{\gcd(p,s)}}$. Since $p$ is prime, we know $H=\set{e}$ or $H=G$.
     \end{proof}
     
+    \subsection{Finitely Generated Abelian Groups}
+    
+    \begin{defi}{Direct Product of Groups}
+        Let $G_1, G_2, \ldots, G_n$ be groups. The \textbf{direct product} $\prod_{i=1}^n G_i = G_1 \times G_2 \times \cdots \times G_n$ is the Cartesian product endowed with componentwise binary operation:
+        \[
+            (a_1, a_2, \ldots, a_n)(b_1, b_2, \ldots, b_n) = (a_1 b_1, a_2 b_2, \ldots, a_n b_n).
+        \]
+        The identity element is $(e_1, e_2, \ldots, e_n)$, and $(a_1, \ldots, a_n)^{-1} = (a_1^{-1}, \ldots, a_n^{-1})$. It therefore forms a group.
+    \end{defi}
+    \bigskip
+
+    \begin{thm}\label{0.2.2}
+        The group $\prod_{i=1}^n \Z_{m_i}$ is cyclic and isomorphic to $\Z_{m_1 m_2 \cdots m_n}$ if and only if $\gcd(m_i, m_j) = 1$ for all $i \noteq j$.
+    \end{thm}
+    \bigskip
+
+    \begin{thm}
+        Let $(a_1, a_2, \ldots, a_n) \in \prod_{i=1}^n G_i$. If each $a_i$ has finite order $r_i$ in $G_i$, then
+        \[
+            \abs{(a_1, a_2, \ldots, a_n)} = \lcm(r_1, r_2, \ldots, r_n).
+        \]
+    \end{thm}
+    \bigskip
+
+    \begin{thm}[\textbf{Fundamental Theorem of Finitely Generated Abelian Groups - Primary Factor Form}]
+        Every finitely generated abelian group $G$ is isomorphic to a direct product of cyclic groups:
+        \[
+            G \cong \Z_{(p_1)^{r_1}} \times \Z_{(p_2)^{r_2}} \times \cdots \times \Z_{(p_n)^{r_n}} \times \underbrace{\Z \times \cdots \times \Z}_{\beta \text{ copies}},
+        \]
+        where $p_i$ are primes (not necessarily distinct) and $r_i \in \Z^+$. $\beta$ is called the \textbf{Betti number} of $G$.
+    \end{thm}
+    \bigskip
+
+    \begin{thm}[\textbf{Fundamental Theorem of Finitely Generated Abelian Groups - Invariant Factor Form}]
+        Every finitely generated abelian group $G$ is isomorphic to a direct product of cyclic groups:
+        \[
+            G \cong \Z_{d_1} \times \Z_{d_2} \times \cdots \times \Z_{d_k} \times \underbrace{\Z \times \cdots \times \Z}_{\beta \text{ copies}},
+        \]
+        where each $d_i \ge 2$ and $d_1 \mid d_2 \mid \cdots \mid d_k$. The \textbf{invariant factors} $d_1, \ldots, d_k$ and the Betti number $\beta$ are uniquely determined.
+    \end{thm}
+    \bigskip
+
+    \begin{defi}{Decomposable and Indecomposable Groups}
+        A group $G$ is \textbf{decomposable} if it is isomorphic to the direct product of two proper nontrivial subgroups: $G \cong H \times K$ with $H, K \noteq \set{e}$. Otherwise, $G$ is \textbf{indecomposable}.
+    \end{defi}
+    \bigskip
+
+    \begin{thm}
+        \[
+            G \text{ is finite indecomposable abelian} \iff G \cong \Z_{p^r} \text{ for some prime } p \text{ and } r \in \Z^+.
+        \]
+    \end{thm}
+    \bigskip
+
+    \begin{thm}
+        If $G$ is a finite abelian group and $m \mid \abs{G}$, then $G$ contains a subgroup of order $m$.
+    \end{thm}
+    \bigskip
+
+    \begin{thm}
+        If $m \in \Z^+$ is square-free, then every abelian group of order $m$ is cyclic.
+    \end{thm}
+    \bigskip
+    
+    \begin{ex}
+        Let $G=\Z_4\times\Z_{18}\times\Z_{15}$ and $H=\Z_3\times\Z_{36}\times\Z_{10}$. Are they isomorphic?
+    \end{ex}
+    \begin{proof}
+        We have 
+        \[
+            G\cong\Z_4\times(\Z_2\times\Z_9)\times(\Z_3\times\Z_5)
+        \]
+        and 
+        \[
+            H\cong\Z_3\times(\Z_4\times\Z_9)\times(\Z_2\times\Z_5)
+        \]
+        It follows that $G\cong H$.
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $G$ be a finite abelian group. Prove that $G$ is not cyclic if and only if $G$ contains a subgroup isomorphic to $\Z_p\times\Z_p$ for some prime $p$.
+    \end{ex}
+    \begin{proof}
+        Since $G$ is finite abelian, then
+        \[
+            G\cong\prod_{i=1}^n\Z_{(p_i)^{r_i}}
+        \]
+        By \hyperref[0.2.2]{Theorem 0.2.2}, if it is not cyclic, then $\gcd((p_i)^{r_i},(p_j)^{r_j})>1$ for some $i\neq j$, implying that $p_i=p_j$ and then
+        \[
+            \Z_{p_i}\times\Z_{p_i}\cong\group{(p_i)^{r_i-1}}\times\group{(p_j)^{r_j-1}}\leq\Z_{(p_i)^{r_i}}\times\Z_{(p_j)^{r_j}}\leq\prod_{i=1}^n\Z_{(p_i)^{r_i}}\cong G
+        \]
+        If $G$ is cylic, then $p_i\neq p_j$ for all $i\neq j$. It follows that if $H\leq G$, then
+        \[
+            H\cong\prod_{i=1}^nZ_{(p_i)^{q_i}},q_i\leq r_i
+        \]
+        which is not isomorphic to $\Z_p\times\Z_p$ since $p_i$ are mutually distinct.
+    \end{proof}
+    \begin{remark}
+        In fact, when $G$ is cylic, we can deduce that $H\leq G$ is also cyclic, which directly tells proves the result.
+    \end{remark}
+    \begin{remark}
+        Generally, one can prove that:
+        \begin{quote}
+            Let $G$ be a finite abelian group, and let $x_1,\dots,x_n\geq 2$ be integers. The group $H=\prod_{i=1}^n\Z_{x_i}$ is isomorphic to a subgroup of $G$ if and only if $G$ can be decomposed as a direct product of cyclic groups $G\cong\prod_{j=1}^m\Z_{y_j}$ such that $m\geq n$ and $x_i\mid y_i$ for all $i\in\set{1,\dots,n}$.
+        \end{quote}
+    \end{remark}
+    \hfill
+
+    \begin{ex}
+        Let $G,H,K$ be finitely generated abelian groups. Show that
+        \[
+            G\times K\cong H\times K\implies G\cong H
+        \]
+    \end{ex}
+    \begin{proof}
+        Since $G,H,K$ are finitely generated abelian groups, so are $G\times K$ and $H\times K$. Since $G\times K\cong H\times K$, so they have the same Betti number and the same collection of $(p_i)^{r_i}$ after decomposition. It follows that after picking up the part given by $K$, we know $G$ and $H$ have the same Betti number and the same collection of $(p_i)^{r_i}$ after decomposition, which implies $G\cong H$.
+    \end{proof}
+
+    \subsection{Cosets and the Theorem of Lagrange}
+
+    \begin{thm}
+        Let $H \le G$. The relation $\sim_L$ defined on $G$ by
+        \[
+            a \sim_L b \iff a^{-1}b \in H
+        \]
+        is an equivalence relation on $G$. Similarly, $a \sim_R b \iff ab^{-1} \in H$ is an equivalence relation.
+    \end{thm}
+    \bigskip
+
+    \begin{defi}{Coset}
+        Let $H \le G$ and $a \in G$.
+        \begin{itemize}
+            \item The \textbf{left coset} of $H$ containing $a$ is the equivalence class under $\sim_L$:
+            \[
+                aH = \set{ah \mid h \in H}.
+            \]
+            \item The \textbf{right coset} of $H$ containing $a$ is the equivalence class under $\sim_R$:
+            \[
+                Ha = \set{ha \mid h \in H}.
+            \]
+        \end{itemize}
+    \end{defi}
+    \bigskip
+
+    \begin{thm}
+        Let $H \le G$. For every $a \in G$, the map $f \colon H \to aH$ defined by $f(h) = ah$ is a bijection. Consequently,
+        \[
+            \abs{aH} = \abs{H} = \abs{Ha} \quad (\forall a \in G).
+        \]
+    \end{thm}
+    \bigskip
+
+    \begin{thm}[Theorem of Lagrange]
+        Let $H$ be a subgroup of a finite group $G$. Then the order of $H$ divides the order of $G$:
+        \[
+            \abs{H} \mid \abs{G}.
+        \]
+    \end{thm}
+    
+    \begin{cor}\label{0.3.5}
+        Every group of prime order $p$ is cyclic, hence isomorphic to $\Z_p$.
+    \end{cor}
+    \bigskip
+
+    \begin{thm}
+        Let $G$ be a finite group. For every $g \in G$, $\abs{g}$ divides $\abs{G}$. In particular, $g^{\abs{G}} = e$.
+    \end{thm}
+    \bigskip
+
+    \begin{defi}{Index of a Subgroup}
+        Let $H \le G$. The \textbf{index} of $H$ in $G$, denoted $(G : H)$ or $[G : H]$, is the cardinality of the set of left (or right) cosets of $H$ in $G$. When $G$ is finite,
+        \[
+            [G : H] = \frac{\abs{G}}{\abs{H}}.
+        \]
+    \end{defi}
+    \bigskip
+
+    \begin{thm}[Tower Law for Subgroup Indices]
+        Let $K \le H \le G$. If $[G : H]$ and $[H : K]$ are finite, then $[G : K]$ is finite and
+        \[
+            [G : K] = [G : H] \cdot [H : K].
+        \]
+    \end{thm}
+    \bigskip
+
+    \begin{thm}[Cosets of Homomorphism Kernels]
+        Let $\phi \colon G \to G'$ be a group homomorphism. Then
+        \begin{enumerate}
+            \item Left and right cosets of $\ker(\phi)$ coincide:
+            \[
+                a \ker(\phi) = \ker(\phi) a \quad (\forall a \in G).
+            \]
+            \item Two elements $a, b \in G$ belong to the same coset of $\ker(\phi)$ if and only if $\phi(a) = \phi(b)$:
+            \[
+                a \ker(\phi) = b \ker(\phi) \iff \phi(a) = \phi(b).
+            \]
+        \end{enumerate}
+    \end{thm}
+    \bigskip
+
+    \begin{cor}
+        A group homomorphism $\phi \colon G \to G'$ is injective if and only if
+        \[
+            \ker(\phi) = \set{e_G}.
+        \]
+    \end{cor}
+    \bigskip
+
+    \begin{ex}
+        Let $\sigma=(1,2,5,4)(2,3)$ in $S_5$, find the index of $\group{\sigma}$ in $S_5$.
+    \end{ex}
+    \begin{proof}
+        Notice $\sigma=(1,2,3,5,4)$, then the order of $\sigma$ is $5$ in $S_5$, implying the index given by 
+        \[
+            [S_5:\group{\sigma}]=\frac{\abs{S_5}}{\abs{\group{\sigma}}}=\frac{5!}{5}=24
+        \]
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $H$ be a subgroup of a group $G$, let $a,b\in G$. Is it true that 
+        \[
+            aH=bH\implies Ha^{-1}=Hb^{-1}
+        \]
+    \end{ex}
+    \begin{proof}
+        The statement is true. Since $aH=bH$, then $ah_a=bh_b$ for some $h_a,h_b\in H$, it follows that $b^{-1}a\in H$. Therefore, for $hb^{-1}\in Hb^{-1}$, we have $hb^{-1}=hb^{-1}aa^{-1}=(hb^{-1}a)a^{-1}\in Ha^{-1}$. Then $Hb^{-1}\subset Ha^{-1}$, similarly we can deduce that $H^{-1}\subset Hb^{-1}$, thus $Ha^{-1}=Hb^{-1}.$
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $G$ be a group of order $pq$, where $p$ and $q$ are prime numbers. Show that every proper subgroup of $G$ is cyclic.
+    \end{ex}
+    \begin{proof}
+        By Theorem of Lagrange we know every proper subgroup $H$ has order $\abs{H}=n\mid pq$ implying $n=1$ or $n=p$ or $n=q$. If $n=1$ then $H$ is trivially cyclic, if $n=p$ or $n=q$ then \hyperref[0.3.5]{Corollary 0.3.5} tells that $H$ is cyclic.         
+    \end{proof}
+
 
     % --- Back Matter ---
     \printglossary
