@@ -16,7 +16,7 @@
     % --- Main Document ---
 
     \setcounter{section}{-1}
-    \section{Abstract Algebra Prerequisites}\addclass{Abstract Algebra Prerequisites}
+    \section{Abstract Algebra Foundations}\addclass{Abstract Algebra Foundations}
     \subsection{Group Theory Basics}
     
     \begin{defi}{Group}
@@ -611,6 +611,594 @@
         By Theorem of Lagrange we know every proper subgroup $H$ has order $\abs{H}=n\mid pq$ implying $n=1$ or $n=p$ or $n=q$. If $n=1$ then $H$ is trivially cyclic, if $n=p$ or $n=q$ then \hyperref[0.3.5]{Corollary 0.3.5} tells that $H$ is cyclic.         
     \end{proof}
 
+    \subsection{Normal Subgroups and Factor Groups}
+
+    \begin{defi}{Normal Subgroup}
+        A subgroup $N \le G$ is \textbf{normal} in $G$, written
+        $N \normal G$, if
+        \[
+            gN = Ng \qquad (\forall g \in G)
+        \]
+    \end{defi}
+    \bigskip
+    
+    \begin{thm}[Characterizations of Normality]
+        Let $N \le G$. The following are equivalent:
+        \begin{enumerate}
+            \item $N \normal G$.
+            \item $gNg^{-1} = N$ for every $g \in G$.
+            \item $gng^{-1} \in N$ for every $g \in G$ and $n \in N$.
+            \item There is a group homomorphism $\phi:G\to G'$ such that $\ker(\phi)=N$.
+        \end{enumerate}
+    \end{thm}
+    
+    \begin{cor}
+        Every subgroup of an abelian group is normal.
+    \end{cor}
+    \bigskip
+    
+    \begin{defi}{Factor Group}
+        Let $N \normal G$. The \textbf{factor group}, or
+        \textbf{quotient group}, of $G$ by $N$ is
+        \[
+            G/N = \set{gN \mid g \in G},
+            \qquad
+            (aN)(bN) = (ab)N.
+        \]
+        Its identity element is $N$, and
+        \[
+            (gN)^{-1} = g^{-1}N.
+        \]
+    \end{defi}
+    \bigskip
+    
+    \begin{defi}{Canonical Projection}
+        For $N \normal G$, the map
+        \[
+            q \colon G \to G/N,
+            \qquad
+            q(g) = gN,
+        \]
+        is called the \textbf{canonical projection}.
+    \end{defi}
+    \bigskip
+    
+    \begin{thm}
+        The canonical projection $q \colon G \to G/N$ is a
+        surjective homomorphism with
+        \[
+            \ker(q) = N.
+        \]
+    \end{thm}
+    \bigskip
+    
+    \begin{thm}[First Isomorphism Theorem]
+        Let $\phi \colon G \to G'$ be a group homomorphism, and set
+        $K = \ker(\phi)$. Then
+        \[
+            \bar{\phi} \colon G/K \to \operatorname{im}(\phi),
+            \qquad
+            \bar{\phi}(gK) = \phi(g),
+        \]
+        is an isomorphism. Thus
+        \[
+            \boxed{G/\ker(\phi) \cong \image(\phi).}
+        \]
+        If $q \colon G \to G/K$ is the canonical projection, then
+        $\bar{\phi}$ is the unique map satisfying
+        \[
+            \bar{\phi}(q(g)) = \phi(g)
+            \qquad (\forall g \in G).
+        \]
+        In particular, if $\phi$ is surjective, then
+        \[
+            G/\ker(\phi) \cong G'.
+        \]
+    \end{thm}
+    \bigskip
+    
+    \begin{remark}
+        To identify a quotient $G/N$, it is often useful to construct a
+        surjective homomorphism $\phi \colon G \to H$ with
+        $\ker(\phi)=N$. The First Isomorphism Theorem then gives
+        $G/N \cong H$.
+    \end{remark}
+    \bigskip
+    
+    \begin{defi}{Automorphism and Inner Automorphism}
+        An \textbf{automorphism} of $G$ is an isomorphism $G \to G$.
+        For each $g \in G$, the map
+        \[
+            i_g \colon G \to G,
+            \qquad
+            i_g(x) = gxg^{-1},
+        \]
+        is an automorphism, called the \textbf{inner automorphism}·
+        induced by $g$. The operation $x \mapsto gxg^{-1}$ is called
+        \textbf{conjugation} by $g$.
+    \end{defi}
+    \bigskip
+    
+    \begin{prop}
+        A subgroup $N \le G$ is normal if and only if it is invariant
+        under every inner automorphism:
+        \[
+            i_g(N) = N \qquad (\forall g \in G).
+        \]
+    \end{prop}
+    \bigskip
+    
+    \begin{remark}
+        Normality means that conjugation preserves $N$ as a set.
+        It does not require $gng^{-1}=n$ for every $g \in G$ and
+        $n \in N$.
+    \end{remark}
+    \bigskip
+
+    \begin{ex}
+        Let $F$ be the group of all functions $\R\to\R$, under pointwise addition:
+        \[
+            (f+g)(x)=f(x)+g(x)
+        \]
+        Fix $c\in\R$, and define
+        \[
+            \phi_c:F\to\R,\qquad \phi_c(f)=f(c).
+        \]
+        \begin{itemize}
+            \item Prove that $\phi_c$ is a group homomorphism.
+            \begin{proof}
+                $\phi_c$ is a homomorphism since for $f,g\in F$, we have
+                \[
+                    \phi_c(f+g)=(f+g)(c)=f(c)+g(c)=\phi_c(f)+\phi_c(g)
+                \]
+            \end{proof}
+            \item Determine $\ker(\phi_c)$.
+            \begin{proof}
+                \[
+                    \ker(\phi_c)=\set{f\in F\mid\phi_c(f)=0}=\set{f:\R\to\R\mid f(c)=0}
+                \]
+            \end{proof}
+            \item Describe the coset of $\ker(\phi_c)$ containing the constant function $f(x)=1$.
+            \begin{proof}
+                The coset is given by 
+                \[
+                    f+\ker(\phi_c)=1+\set{f:\R\to\R\mid f(c)=0}=\set{f:\R\to\R\mid f(c)=1}
+                \]
+            \end{proof}
+            \item Identify a familiar group isomorphic to $F/\ker(\phi_c)$.
+            \begin{proof}
+                By First Isomorphism Theorem, since $\phi_c:F\to\R$ is a group homomorphism, then
+                \[
+                    F/\ker(\phi_c)\cong\image(\phi_c)=\R
+                \]
+            \end{proof}
+        \end{itemize}
+    \end{ex}
+    \bigskip
+
+    \begin{ex}
+        Let $H,N\leq G$ with $N\normal G$. Prove that $H\cap N\normal H$ and give a example showing that $H\cap N$ need not be normal in $G$.
+    \end{ex}
+    \begin{proof}
+        Let $x\in H,y\in H\cap N$, then $xyx^{-1}\in H\cap N$ since
+        \[
+            x\in G,y\in N\implies xyx^{-1}\in N
+        \]
+        \[
+            x,y\in H\implies xyx^{-1}\in H
+        \]
+
+        Let $G=D_3,N=G,H=\group{\mu}$, then $N\cap H=\group{\mu}$ is not a normal subgroup of $G$ since $\mu\rho\neq\rho\mu$.
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $G,G'$ be groups with $H\normal G$ and $H'\normal G'$. Let $\phi:G\to G'$ be a homomorphism satisfying:
+        \[
+            \phi(H)\subset H'
+        \]
+        Prove that $\phi$ induces a well-defined homomorphism
+        \[
+            \phi_*:G/H\to G'/H'\qquad\phi_*(gH)=\phi(g)H'
+        \]
+    \end{ex}
+    \begin{proof}
+        If $xH=yH$, then
+        \[
+            xy^{-1}\in H\implies \phi(xy^{-1})\in H'\implies \phi(x)H'=\phi(y)H'\implies \phi_*(xH)=\phi_*(yH)
+        \]
+        which implies $\phi_*$ is well-defined. Since $\phi$ is a homomorphism, then
+        \[
+            \phi_*(xyH)=\phi(xy)H'=(\phi(x)H')(\phi(y)H')=\phi_*(xH)\phi_*(yH)
+        \]
+        which implies $\phi_*$ is a homomorphism
+    \end{proof}
+    
+    
+    \subsection{Factor-Group Computations and Simple Groups}
+    
+    \begin{thm}[Quotients of Direct Products]
+        Let $H$ and $K$ be groups. Then
+        \[
+            H \times \set{e_K} \normal H \times K,
+            \qquad
+            \set{e_H} \times K \normal H \times K,
+        \]
+        and the coordinate projections induce isomorphisms
+        \[
+            \frac{H \times K}{H \times \set{e_K}} \cong K,
+            \qquad
+            \frac{H \times K}{\set{e_H} \times K} \cong H.
+        \]
+    \end{thm}
+    \bigskip
+    
+    \begin{thm}[Cyclic and Abelian Quotients]
+        Let $N \normal G$.
+        \begin{enumerate}
+            \item If $G$ is cyclic, then $G/N$ is cyclic. More precisely,
+            \[
+                G = \group{a}
+                \implies G/N = \group{aN}.
+            \]
+            \item If $G$ is abelian, then $G/N$ is abelian.
+        \end{enumerate}
+    \end{thm}
+    \bigskip
+    
+    \begin{eg}
+        For every group $G$ and every positive integer $n$,
+        \[
+            G/\set{e_G} \cong G,
+            \qquad
+            G/G \cong \set{e},
+            \qquad
+            \Z/n\Z \cong \Z_n.
+        \]
+    \end{eg}
+    \bigskip
+    
+    \begin{thm}[Images and Preimages of Normal Subgroups]
+        Let $\phi \colon G \to G'$ be a group homomorphism.
+        \begin{enumerate}
+            \item If $N \normal G$, then
+            \[
+                \phi(N) \normal \phi(G).
+            \]
+            \item If $M \normal \phi(G)$, then
+            \[
+                \phi^{-1}(M) \normal G.
+            \]
+            \item In particular, if $M \normal G'$, then
+            $\phi^{-1}(M) \normal G$.
+        \end{enumerate}
+    \end{thm}
+    \bigskip
+    
+    \begin{remark}
+        The image of a normal subgroup is normal in $\phi(G)$,
+        but need not be normal in the whole codomain $G'$.
+    \end{remark}
+    \bigskip
+    
+    \begin{defi}{Simple Group}
+        A group $G$ is \textbf{simple} if $G \neq \set{e}$ and its
+        only normal subgroups are $\set{e}$ and $G$.
+    \end{defi}
+    \bigskip
+    
+    \begin{thm}
+        An abelian group is simple if and only if it is isomorphic
+        to $\Z_p$ for some prime $p$.
+    \end{thm}
+    \bigskip
+    
+    \begin{thm}[Simplicity of Alternating Groups]
+        The alternating group $A_n$ is simple for every $n \ge 5$.
+    \end{thm}
+    \bigskip
+    
+    \begin{defi}{Maximal Normal Subgroup}
+        A \textbf{maximal normal subgroup} of $G$ is a proper normal
+        subgroup $M \normal G$ such that there is no normal subgroup
+        $N \normal G$ satisfying
+        \[
+            M < N < G.
+        \]
+    \end{defi}
+    \bigskip
+    
+    \begin{thm}
+        Let $M \normal G$. Then
+        \[
+            \boxed{
+                M \text{ is maximal normal in } G
+                \iff G/M \text{ is simple}.
+            }
+        \]
+    \end{thm}
+    \bigskip
+    
+    \begin{remark}
+        A maximal normal subgroup is maximal among proper
+        \emph{normal} subgroups. It need not be maximal among all
+        proper subgroups.
+    \end{remark}
+    \bigskip
+    
+    \begin{defi}{Center of a Group}
+        The \textbf{center} of $G$ is
+        \[
+            Z(G) = \set{z \in G \mid zg=gz
+            \text{ for every } g \in G}.
+        \]
+    \end{defi}
+    \bigskip
+    
+    \begin{prop}
+        The center $Z(G)$ is an abelian normal subgroup of $G$.
+        Moreover,
+        \[
+            G \text{ is abelian} \iff Z(G)=G.
+        \]
+    \end{prop}
+    \bigskip
+    
+    \begin{defi}{Commutator and Commutator Subgroup}
+        For $a,b \in G$, the element
+        \[
+            [a,b] = aba^{-1}b^{-1}
+        \]
+        is called their \textbf{commutator}.
+        The \textbf{commutator subgroup} of $G$ is
+        \[
+            [G,G] = \group{[a,b] \mid a,b \in G}.
+        \]
+    \end{defi}
+    \bigskip
+    
+    \begin{remark}
+        The commutator subgroup is generated by all commutators.
+        The set of individual commutators need not itself be a subgroup.
+    \end{remark}
+    \bigskip
+    
+    \begin{thm}
+        The commutator subgroup satisfies $[G,G] \normal G$.
+        For every $N \normal G$,
+        \[
+            \boxed{
+                G/N \text{ is abelian} \iff [G,G] \le N.
+            }
+        \]
+        Thus $[G,G]$ is the smallest normal subgroup of $G$
+        whose quotient is abelian.
+    \end{thm}
+    \bigskip
+    
+    \begin{defi}{Abelianization}
+        The \textbf{abelianization} of $G$ is the abelian group
+        \[
+            G_{\mathrm{ab}} = G/[G,G].
+        \]
+    \end{defi}
+    \bigskip
+    
+    \begin{cor}[Universal Property of Abelianization]
+        Let $A$ be an abelian group and let $\phi \colon G \to A$
+        be a homomorphism. There is a unique homomorphism
+        \[
+            \bar{\phi} \colon G_{\mathrm{ab}} \to A
+        \]
+        such that $\phi=\bar{\phi}\circ q$, where
+        $q \colon G \to G_{\mathrm{ab}}$ is the canonical projection.
+        Explicitly,
+        \[
+            \bar{\phi}(g[G,G])=\phi(g).
+        \]
+    \end{cor}
+    \bigskip
+
+    \begin{ex}
+        Classify the group
+        \[
+            \frac{\Z\times\Z\times\Z}{\group{(3,3,3)}}
+        \]
+        according to the Fundamental Theorem of Finitely Generated Abelian Groups.
+    \end{ex}
+    \begin{proof}
+        Define $\phi:\Z\times\Z\times\Z\to\Z_3\times\Z\times\Z$ by $\phi(x,y,z)=((x+y-z)\mod 3,x-y,y-z)$ be a homormophism with $\ker(\phi)=\group{(3,3,3)}$. It follows that 
+        \[
+            \frac{\Z\times\Z\times\Z}{\group{(3,3,3)}}\cong\image(\phi)=\Z_3\times\Z\times\Z
+        \]
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Find both the center $Z(D_4)$ and the commutator subgroup $[D_4,D_4]$ of the group $D_4$.
+    \end{ex}
+    \begin{proof}
+        One can varify that $Z(D_4)=\set{e,\rho^2}$.
+        
+        Let $N=\group{\rho^2}\normal D_4$. Notice for $a^2\in N$ for all $a\in D_4$, implying that $aN=a^{-1}N$. It follows that for $aN,bN\in D_4/N$,
+        \[
+            abN=a^{-1}b^{-1}N=(ba)^{-1}N=baN
+        \]
+        which is abelian. Hence $[D_4,D_4]\subset N$. Moreover, $\mu\rho(\mu)^{-1}(\rho)^{-1}=\rho^2$ tells $[D_4,D_4]=N=\group{\rho^2}$.
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Prove that if $G$ is nonabelian, then
+        \[
+            G/Z(G)
+        \]
+        is not cyclic
+    \end{ex}
+    \begin{proof}
+        Assume $G/Z(G)=\group{gZ(G)}$ is cyclic. Let $a=g^nz_a,b=g^mz_b$ where $z_a,z_b\in Z(G)$. It follows that $ab=g^nz_ag^mz_b=g^mz_bg^nz_a=ba$ since $g^n,g^m,z_a,z_b$ all commutes with each other, which contradicts to $G$ being nonabelian. Therefore, $G/Z(G)$ is not cyclic.
+    \end{proof}
+    \bigskip
+    
+    \subsection{Isomorphism Theorems}
+    
+    % The First Isomorphism Theorem is stated above.
+    
+    \begin{lemma}[Normal-Subgroup Correspondence]
+        Let $N \normal G$, and let $q \colon G \to G/N$ be the
+        canonical projection. There is an inclusion-preserving bijection
+        \[
+            \set{L \normal G \mid N \le L}
+            \longleftrightarrow
+            \set{M \normal G/N}
+        \]
+        given by
+        \[
+            L \longmapsto L/N,
+            \qquad
+            M \longmapsto q^{-1}(M).
+        \]
+        These assignments are mutually inverse.
+    \end{lemma}
+    \bigskip
+    
+    \begin{defi}{Product and Join of Subgroups}
+        Let $H,N \le G$. Their \textbf{set product} is
+        \[
+            HN = \set{hn \mid h \in H,\ n \in N}.
+        \]
+        Their \textbf{join} is
+        \[
+            H \vee N = \group{H \cup N},
+        \]
+        the smallest subgroup of $G$ containing both $H$ and $N$.
+    \end{defi}
+    \bigskip
+    
+    \begin{lemma}
+        Let $H \le G$ and $N \normal G$. Then
+        \[
+            H \vee N = HN = NH \le G.
+        \]
+        If $H$ is also normal in $G$, then $HN \normal G$.
+    \end{lemma}
+    \bigskip
+    
+    \begin{remark}
+        Without additional hypotheses, the set product of two
+        subgroups need not be a subgroup.
+    \end{remark}
+    \bigskip
+    
+    \begin{thm}[Second Isomorphism Theorem]
+        Let $H \le G$ and $N \normal G$. Then
+        \[
+            H \cap N \normal H,
+            \qquad
+            N \normal HN,
+        \]
+        and there is an isomorphism
+        \[
+            \boxed{H/(H \cap N) \cong HN/N}
+        \]
+        given by
+        \[
+            h(H \cap N) \longmapsto hN.
+        \]
+    \end{thm}
+    \bigskip
+    
+    \begin{remark}
+        The homomorphism
+        \[
+            H \to HN/N,\qquad h \mapsto hN,
+        \]
+        is surjective and has kernel $H \cap N$.
+        Thus the Second Isomorphism Theorem identifies the image
+        of $H$ under the quotient map $G \to G/N$.
+    \end{remark}
+    \bigskip
+    
+    \begin{thm}[Third Isomorphism Theorem]
+        Let $K,H \normal G$ with $K \le H$. Then
+        \[
+            H/K \normal G/K
+        \]
+        and there is an isomorphism
+        \[
+            \boxed{(G/K)/(H/K) \cong G/H}
+        \]
+        given by
+        \[
+            (gK)(H/K) \longmapsto gH.
+        \]
+    \end{thm}
+    \bigskip
+    
+    \begin{remark}
+        The homomorphism
+        \[
+            G/K \to G/H,\qquad gK \mapsto gH,
+        \]
+        is surjective and has kernel $H/K$.
+        Quotienting first by $K$ and then by $H/K$ therefore has
+        the same effect as quotienting directly by $H$.
+    \end{remark}
+    \bigskip
+
+    \begin{ex}
+        Let $H,K$ and $L$ be normal subgroups of $G$ with $H<K<L$. Let $A=G/H,B=K/H,C=L/H$
+        \begin{itemize}
+            \item Show that $B$ and $C$ are normal subgroups of $A$, and $B<C$.
+            \begin{proof}
+                For $gH\in A,kH\in B$, we have $gHkHg^{-1}H=(gkg^{-1})H=k'H$ for some $k'\in K$, hence $B\normal A$. Similarly, we know $C\normal A$.
+                
+                For $kH\in B$, we know $k\in L$ thus $kH\in C$; $K<L$ means there is $l\in L\setminus K$ thus $lH\in C\setminus B$. It follows that $B<C$.
+            \end{proof}
+            \item To what factor group of $G$ is $(A/B)/(C/B)$ isomorphic?
+            \begin{proof}
+                By Third Isomorphism Theorem we know
+                \[
+                    (A/B)/(C/B)\cong A/C=(G/H)/(L/H)\cong G/L  
+                \]
+            \end{proof}
+        \end{itemize}
+    \end{ex}
+    \bigskip
+
+    \begin{ex}
+        Let $K$ and $L$ be normal subgroups of $G$ with $K\vee L=G$, and $K\cap L=\set{e}$. Show that $G/K\cong L$ and $G/L\cong K$.
+    \end{ex}
+    \begin{proof}
+        Since $K\normal G$ and $L\normal G$, we know $G=K\vee L=KL$. Then the Second Isomorphism Theorem implies that
+        \[
+            KL/K=G/K\cong L/(K\cap L)=L/\set{e}\cong L
+        \]
+        Similar argument shows that $G/L\cong K$.
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $G$ be a group with subgroups $H^*\leq H\leq G$ and $K^*\leq K\leq G$. Prove that
+        \[
+            H^*(H\cap K^*)\cap(H\cap K)=(H^*\cap K)(H\cap K^*)
+        \]
+    \end{ex}
+    \begin{proof}
+        Notice
+        \[
+            H^*(H\cap K^*)\cap(H\cap K)=((H^*\cap K)\cup(H^*\setminus K))(H\cap K^*)\cap(H\cap K)
+        \]
+        Since $H\cap K\leq G$, then for $x\in H\cap K^*,y\in H\cap K$, one has $yx^{-1}\in H\cap K$, it follows that
+        \[
+            (H^*\setminus K)(H\cap K^*)\cap(H\cap K)=\emptyset
+        \]
+        then
+        \[
+            H^*(H\cap K^*)\cap(H\cap K)=(H^*\cap K)(H\cap K^*)\cap(H\cap K)=(H^*\cap K)(H\cap K^*)
+        \]
+        The second equation is due to $H^*\cap K\leq H\cap K$ and $H\cap K^*\leq H\cap K$.
+    \end{proof}
 
     % --- Back Matter ---
     \printglossary
