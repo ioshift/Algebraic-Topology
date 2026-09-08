@@ -1199,7 +1199,166 @@
         \]
         The second equation is due to $H^*\cap K\leq H\cap K$ and $H\cap K^*\leq H\cap K$.
     \end{proof}
+    
+    \newpage
 
+    \section{The Fundamental Group}\addclass{The Fundamental Group}
+    \subsection{Homotopy of Paths}
+    \begin{defi}{Homotopic and Nulhomotopic}
+        If $f$ and $f'$ are continuous map of the space $X$ into the space $Y$, we say $f$ is \textbf{homotopic} to $f'$ if there is a continuous map $F:X\times I\to Y$ such that 
+        \[
+            F(x,0)=f(x)\aand F(x,1)=f'(x)
+        \]
+        for each $x$. The map $F$ is called a \textbf{homotopy} between $f$ and $f'$, denoted by $f\simeq f'$. If $f\simeq f'$ and $f'$ is a constant map, we say that $f$ is \textbf{nulhomotopic}.
+    \end{defi}
+    
+    \begin{defi}{Path Homotopic}
+        Two paths $f,f':I\to X$ are said to be \textbf{path homotopic} if they have the same initial point $x_0$ and the same final point $x_1$, and if there is a continuous map $F:I\times I\to X$ such that
+        \[
+            F(s,0)=f(s)\aand F(s,1)=f'(s)
+        \]
+        \[
+            F(0,t)=x_0\aand F(1,t)=x_1
+        \]
+        for each $s,t\in I$. The map $F$ is called a \textbf{path homotopy} between $f$ and $f'$, denoted by $f\simeq_p f'$.
+    \end{defi}
+    \begin{remark}
+        In this case, the relations $\simeq$ and $\simeq_p$ are equivalence relations.
+
+        In particular, if $f$ is a path, then its path homotopy equivalence class is denoted by $[f]$.
+    \end{remark}
+    \begin{remark}
+        Note that generally it's not true that for paths $f,g$ which share the same endpoints, they are homotopic iff they are path homotopic.
+        
+        The reason is path homotopy requires endpoints to be fixed during the transformation while homotopy does not. As a result, if there is a hole between two endpoints, then path homotopy cannot transform a path on the one side to the other side while homotopy can.
+
+        In fact, a path $f$ is always homotopic to the constant map at $f(0)$, thus being nulhomotopic. As a result, we have:
+        \begin{quote}
+            Paths $f,g:I\to X$ are homotopic if and only if $f(0)$ and $g(0)$ belong to the same path component of $X$.
+        \end{quote}
+    \end{remark}
+    \begin{remark}\addelement{Straight-Line Homotopy}
+        However, let $A$ be any convex subspace of $\R^n$. Then any two paths $f,g:I\to A$ which share the same endpoint are path homomoprhic under the \textbf{straight-line homotopy}:
+        \[
+            F(x,t)=(1-t)f(x)+tg(x)
+        \]
+    \end{remark}
+    \bigskip
+
+    \begin{defi}{Product of Paths}
+        Let $f$ be a path in $X$ from $x_0$ to $x_1$, $g$ be a path in $X$ from $x_1$ to $x_2$. We define the \textbf{product} $f*g$ of $f$ and $g$ to be the path $h$ from $x_0$ to $x_2$ given by
+        \[
+            h(s)=\begin{cases}
+                f(2s)&s\in[0,\frac{1}{2}]\\
+                g(2s-1)&s\in[\frac{1}{2},1]
+            \end{cases}
+        \]
+        It then induces a well-defined operation $*$ on path-homotopy classes defined by
+        \[
+            \boxed{[f]*[g]=[f*g]}
+        \]
+    \end{defi}
+    \begin{thm}[Groupoid Properties]
+        The operation $*$ on path-homotopy classes has the following properties:
+        \begin{itemize}
+            \item (Associativity) With endpoints match, one has
+            \[
+                ([f]*[g])*[h]=[f]*([g]*[h])
+            \]
+            \item (Right and left identities) Let $e_x(s)=x$ be the constant path and $f$ be a path from $x_0$ to $x_1$, then
+            \[
+                [f]*[e_{x_1}]=[f]=[e_{x_0}]*[f]
+            \]
+            \item Let $f$ be a path from $x_0$ to $x_1$, $\bar{f}(s)=f(1-s)$ be a path from $x_1$ to $x_0$, then
+            \[
+                [f]*[\bar{f}]=[e_{x_0}]\aand [\bar{f}]*[f]=[e_{x_1}]
+            \]
+        \end{itemize}
+    \end{thm}
+    \begin{remark}
+        Let $f,f':I\to X$ be paths and $k:X\to Y$ be continuous. Then
+        \[
+            f\simeq_p f'\implies k\circ f\simeq_p k\circ f'
+        \]
+    \end{remark}
+    \begin{remark}
+        Let $f,g:I\to X$ with $f(1)=g(0)$ and $k:X\to Y$ be continuous. Then
+        \[
+            k\circ(f*g)=(k\circ f)*(k\circ g)
+        \]
+    \end{remark}
+    \bigskip
+
+    \begin{thm}
+        Let $f:I\to X$ be a path and
+        \[
+            0=a_0<a_1<\cdots<a_n=1
+        \]
+        Reparametrize each segment as a path on $I$:
+        \[
+            f_i(s)=f(a_{i-1}+(a_i-a_{i-1})s)
+        \]
+        Then
+        \[
+            [f]=[f_1]*\cdots*[f_n]
+        \]
+    \end{thm}
+    \bigskip
+
+    \begin{ex}
+        Let $I=[0,1]$, then for any space $X$ and continuous maps $f,g:X\to I$. We have $f\simeq g$.
+    \end{ex}
+    \begin{proof}
+        Define $F:X\times I\to I$ by the straight-line homotopy
+        \[
+            F(x,t)=(1-t)f(x)+tg(x)
+        \]
+        Then one can verify that $F$ is a homotopy between $f$ and $g$.
+    \end{proof}
+    \bigskip
+
+    \begin{ex}\addelement{Contractible}
+        A space $X$ is said to be \textbf{contractible} if the identity map $i_x:X\to X$ is nulhomotopic.
+        \begin{itemize}
+            \item Show that $I$ and $\R$ are contractible.
+            \begin{proof}
+                Since both $I$ and $\R$ are both convex subspaces of $\R$. Then $f(x)=0$ is homotopic to $i_x$ given by the striaght-line homotopy
+                \[
+                    F(x,t)=(1-t)f(x)+ti_x(x)
+                \]
+            \end{proof}
+            \item Show that a contractible space is path connected.
+            \begin{proof}
+                Let $X$ be a contractible space and $i_x\simeq f$ where $f(x)=y$ for all $x\in X$. Let $F$ be the homotopy from $i_x$ to $f$. Then given any $z\in X$, the map $g:I\to X$ defined by
+                \[
+                    g(t)=F(z,t)
+                \]
+                is a path from $z$ to $y$, which implies $X$ is path connected.
+            \end{proof}
+            \item Let $f,g:X\to Y$ be continuous where $Y$ is contractible, show that $f\simeq g$.
+            \begin{proof}
+                Since $Y$ is contractible. Then $i_y\simeq h$ for some $h(y)=y_0$ with homotopy $F$ satisfying $F(y,0)=y$ and $F(y,1)=y_0$. Then $G:X\times I\to Y$ defined by
+                \[
+                    G(x,t)=F(f(x),t)
+                \]
+                is a homotopy from $f$ to $u(x)=y_0$. It follows that $f\simeq g$.
+            \end{proof}
+            \item Let $f,g:X\to Y$ be continuous where $X$ is contractible and $Y$ is path connected, show that $f\simeq g$.
+            \begin{proof}
+                Let $i_x\simeq u$ with $u(x)=x_0$ and homotopy $U$ such that $U(x,0)=x$ and $U(x,1)=x_0$. Define $h_f:X\to Y$ by $h_f(x)=f(x_0)$. We know $f\simeq h_f$ under the homotopy defined by
+                \[
+                    F(x,t)=f(U(x,t))
+                \]
+                Similarly, $g\simeq h_g$. Finally, there is a path $p:I\to Y$ from $f(x_0)$ to $g(x_0)$, which induces the homotopy 
+                \[
+                    P(x,t)=p(t)
+                \]
+                implying that $h_f\simeq h_g$. Therefore $f\simeq g$.
+            \end{proof}
+        \end{itemize}
+    \end{ex}
+
+    
     % --- Back Matter ---
     \printglossary
     
