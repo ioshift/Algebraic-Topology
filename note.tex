@@ -1357,7 +1357,247 @@
             \end{proof}
         \end{itemize}
     \end{ex}
+    \bigskip
 
+    \subsection{The Fundamental Group}
+    \begin{defi}{Fundamental Group}
+        Let $X$ be a space; let $x_0\in X$. A path in $X$ that begins and ends at $x_0$ is called a \textbf{loop} based on $x_0$.
+
+        The set of path homotopy classes of loops based at $x_0$, with the operation $*$, form a group, called the \textbf{fundamental group} of $X$ relative to the base point $x_0$, denoted by $\pi_1(X,x_0)$.
+    \end{defi}
+    \begin{remark}
+        Sometimes this group is called the \textbf{first homotopy group} of $X$.
+    \end{remark}
+    \bigskip
+
+    \begin{eg}
+        \begin{itemize}
+            \item Let $X$ be a convex subset of $\R^n$, then any two loops based at $x_0\in X$ are path homomorphic under the straight-line homotopy, implying that $\pi_1(X,x_0)$ is the trivial group containing a single element.
+            \item Let $X=S^2$. Then $\pi_1(X,x_0)=\set{[f_k]:k\in\Z}\cong\Z$ where $f_0$ is the constant loop; $f_k$ represents $k$ clockwise turns for $k>0$; $f_k$ represents $-k$ counterclockwise turns for $k<0$. 
+        \end{itemize}
+    \end{eg}
+    \bigskip
+
+    \begin{defi}{$\hat{\alpha}$}
+        Let $\alpha$ be a path in $X$ from $x_0$ to $x_1$. We define a map
+        \[
+            \hat{\alpha}:\pi_1(X,x_0)\to\pi_1(X,x_1)
+        \]
+        by
+        \[
+            \hat{\alpha}([f])=[\bar{\alpha}]*[f]*[\alpha]
+        \]
+    \end{defi}
+    \bigskip
+
+    \begin{thm}
+        The map $\hat{\alpha}$ is a group isomorphism.
+    \end{thm}
+    \begin{cor}
+        If $X$ is path connected, then
+        \[
+            \pi_1(X,x_0)\cong\pi_1(X,x_1)
+        \]
+        for any $x_0,x_1\in X$.
+    \end{cor}
+    \begin{remark}
+        Let $x_0\in C\subset X$ where $C$ is a path component of $X$, then we have
+        \[
+            \pi_1(C,x_0)=\pi_1(X,x_0)
+        \]
+        So we usually deal with only path-connected spaces for fundamental groups.
+    \end{remark}
+    \bigskip
+
+    \begin{defi}{Simple Connected}
+        A space $X$ is said to be \textbf{simple connected} if it is path connected and $\pi_1(X,x_0)$ is the trivial group, denoted $\pi_1(X,x_0)=0$, for some, and hence for all $x_0\in X$.
+    \end{defi}
+    \begin{lemma}
+        The space $X$ is simply connected if and only if any two paths having the same initial and final points are path homotopic.
+    \end{lemma}
+    \bigskip
+
+    \begin{defi}{Induced homomorphism}
+        We denote
+        \[
+            h:(X,x_0)\to (Y,y_0)
+        \]
+        if $h:X\to Y$ is continuous and $h(x_0)=y_0$. It induces a homomorphism
+        \[
+            h_*:\pi_1(X,x_0)\to\pi_1(Y,y_0)
+        \]
+        defined by
+        \[
+            h_*([f])=[h\circ f]
+        \]
+        often denoted as $(h_{x_0})_*$ to clearify the base point.
+    \end{defi}
+    \bigskip
+
+    \begin{thm}[Functorial Properties]
+        For continuous maps
+        \[
+            (X,x_0)\xrightarrow{h}(Y,y_0)\xrightarrow{k}(Z,z_0)
+        \]
+        we have
+        \[
+            (k\circ h)_*=k_*\circ h_*
+        \]
+        For the identity map \(i:(X,x_0)\to(X,x_0)\)
+        \[
+            i_*=\operatorname{id}_{\pi_1(X,x_0)}
+        \]
+    \end{thm}
+    \begin{cor}
+        If $h:(X,x_0)\to (Y,y_0)$ is a homemorphism of $X$ with $Y$, then $h_*$ is an isomorphism of $\pi_1(X,x_0)$ with $\pi_1(Y,y_0)$.
+    \end{cor}
+    \bigskip
+
+    \begin{ex}
+        A subset $A$ of $\R^n$ is said to be \textbf{star convex} if for some $a_0\in A$, all the line segments joining $a_0$ to other points of $A$ lie in $A$.
+        \begin{itemize}
+            \item Find a star convex set that is not convex.
+            \begin{proof}
+                The set $\set{(x,y):xy=0}\subset\R^2$ is star convex but not convex.
+            \end{proof}
+            \item Show that if $A$ is star convex, $A$ is simply connected.
+            \begin{proof}
+                For all $x\in A$. The line segement $\set{\alpha x+(1-\alpha)a_0:0\leq\alpha\leq1}$ is a path from $a_0$ to $x$ fully contained in $A$. Therefore, $A$ is path connected.
+
+                Let $l$ be a loop based on $a_0$. Then $F$ defined by
+                \[
+                    F(s,t)=ta_0+(1-t)l(s)
+                \]
+                is a path homotopy from $l$ to the identitfy loop at $a_0$. It follows that $\pi_1(A,a_0)=0$.
+            \end{proof}
+        \end{itemize}
+    \end{ex}
+    \bigskip
+
+    \begin{ex}
+        Let $\alpha$ be a path in $X$ from $x_0$ to $x_1$; let $\beta$ be a path in $X$ from $x_1$ to $x_2$. Show that if $\gamma=\alpha*\beta$, then $\hat{\gamma}=\hat{\beta}\circ\hat{\alpha}$
+    \end{ex}
+    \begin{proof}
+        Let $[f]\in \pi_1(X,x_0)$. Then
+        \[
+            \hat{\beta}(\hat{\alpha}([f]))=\hat{\beta}([\bar{\alpha}]*[f]*[\alpha])=[\bar{\beta}]*[\bar{\alpha}]*[f]*[\alpha]*[\beta]=[\bar{\gamma}]*[f]*[\gamma]=\hat{\gamma}([f])
+        \]
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $X$ be path-connected and let $x_0,x_1\in X$. Show that $\pi_1(X,x_0)$ is abelian if and only if for every pair $\alpha$ and $\beta$ of paths from $x_0$ to $x_1$, we have $\hat{\alpha}=\hat{\beta}$.
+    \end{ex}
+    \begin{proof}
+        $\impliedby:$ Let $[f],[g]\in\pi_1(X,x_0)$; let $\alpha$ be a path from $x_0$ to $x_1$ and $\beta=f*\alpha$. Then
+        \[
+            \hat{\beta}([g])=[\bar{\beta}]*[g]*[\beta]=[\bar{\alpha}]*[\bar{f}]*[g]*[f]*[\alpha]
+        \]
+        \[
+            \hat{\alpha}([g])=[\bar{\alpha}]*[g]*[\alpha]
+        \]
+        It follows that
+        \[
+            [\bar{f}]*[g]*[f]=[g]\implies [g]*[f]=[f]*[g]
+        \]
+
+        $\implies:$ Let $\alpha,\beta$ be paths from $x_0$ to $x_1$. Let $[f]\in\pi_1(X,x_0)$. Then we have
+        \[
+            \hat{\alpha}([f])=[\bar{\alpha}]*[f]*[\alpha]=[\bar{\alpha}]*([\beta]*[\bar{\beta}])*[f]*([\beta]*[\bar{\beta}])*[\alpha]
+        \]
+        We know $\pi_1(X,x_1)$ is also abelian. Then
+        \begin{align*}
+            &([\bar{\alpha}]*[\beta]),([\bar{\beta}]*[f]*[\beta]),([\bar{\beta}]*[\alpha])\in\pi_1(X,x_1)\\
+            \implies&\hat{\alpha}([f])=([\bar{\alpha}]*[\beta])*([\bar{\beta}]*[\alpha])*([\bar{\beta}]*[f]*[\beta])=[\bar{\beta}]*[f]*[\beta]=\hat{\beta}([f])
+        \end{align*}
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $A\subset X$; let $r:X\to A$ be a retraction of $X$ onto $A$ (i.e. $r$ is continuous and $r(a)=a$ for all $a\in A$). If $a_0\in A$, show that
+        \[
+            r_*:\pi_1(X,a_0)\to \pi_1(A,a_0)
+        \]
+        is surjective.
+    \end{ex}
+    \begin{proof}
+        Let $p:I\to A$ be a loop at $a_0$. Then $p':I\to X$ defined by $p'=p$ is also a loop at $a_0$. Hence $r_*([p'])=[r\circ p']=[p]$ implying that $r_*$ is surjective.
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Show that if $X$ is path-connected, the homomorphism induced by a continuous map is independent of the base point, up to isomorphisms of the groups involved. More precisely, let $h:X\to Y$ be continuous, with $h(x_0)=y_0$ and $h(x_1)=y_1$. Let $\alpha$ be a path in $X$ from $x_0$ to $x_1$, let $\beta=h\circ\alpha$. Show that 
+        \[
+            \hat{\beta}\circ(h_{x_0})_*=(h_{x_1})_*\circ\hat{\alpha}
+        \]
+    \end{ex}
+    \begin{proof}
+        Given $[f]\in\pi_1(X,x_0)$, we have
+        \[
+            \hat{\beta}\circ(h_{x_0})_*[f]=\hat{\beta}([h(f)])=[\bar{\beta}][h(f)][\beta]
+        \]
+        \[
+            (h_{x_1})_*\circ\hat{\alpha}[f]=(h_{x_1})_*([\bar{\alpha}][f][\alpha])=[h(\bar{\alpha})][h(f)][h\alpha]=[\bar{\beta}][h(f)][\beta]
+        \]
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $\group{G,\cdot}$ be a topological group with identity $x_0$. Let $\Omega(G,x_0)$ denote the set of all loops in $G$ based at $x_0$. If $f,g\in \Omega(G,x_0)$, then $f\otimes g$ defines a loop by
+        \[
+            (f\otimes g)(s)=f(s)\cdot g(s)
+        \]
+        \begin{itemize}
+            \item Show that $\Omega(G,x_0)$ together with the operation $\otimes$ is a group.
+            \begin{proof}
+                For all $f,g\in\Omega(G,x_0)$, by definition we have $f\otimes g\in \Omega(G,x_0)$.
+
+                For all $f,g,h\in\Omega(G,x_0)$, we have
+                \[
+                    (f\otimes g)\otimes h(s)=f\otimes(g\otimes h)(s)=f(s)g(s)h(s)
+                \]
+
+                Let $e_{x_0}\in \Omega(G,x_0)$ be the constant loop based at $x_0$. Then for $f\in\Omega(G,x_0)$, since $x_0$ is the identity, we have
+                \[
+                    (f\otimes e_{x_0})(s)=f(s)x_0=f(s)=(e_{x_0}\otimes f)(s)
+                \]
+                then $e_{x_0}$ is the identity of $\Omega(G,x_0)$.
+
+                Let $f\in \Omega(G,x_0)$, then $f':I\to G$ defined by
+                \[
+                    f'(s)=f^{-1}(s)
+                \]
+                is trivially the inverse of $f$.
+            \end{proof}
+            \item Show that this operation induces group operation $\otimes$ on $\pi_1(G,x_0)$ which is identical to $*$. More precisely, let $f,g\in\Omega(G,x_0)$, then
+            \[
+                [f*g]=[f\otimes g]
+            \]
+            \begin{proof}
+                To show that $[f]\otimes [g]=[f\otimes g]$ is well-defined. Let $F$ be the path homotopy between $f$ and $f'$, $G$ be the path homotopy between $g$ and $g'$. Then $H$ defined by
+                \[
+                    H(s,t)=F(s,t)\cdot G(s,t)
+                \]
+                can be verified to be the path homotopy between $f\otimes g$ and $f'\otimes g'$.
+
+                Therefore, we have
+                \[
+                    [f\otimes g]=[f]\otimes[g]=[f*e_{x_0}]\otimes[e_{x_0}*g]=[(f*e_{x_0})\otimes(e_{x_0}*g)]=[f*g]
+                \]
+            \end{proof}
+            \item Show that $\pi_1(G,x_0)$ is abelian.
+            \begin{proof}
+                Let $f,g\in \Omega(G, x_0)$. Define $g',f'$ by $g'(s)=g^{-1}(s)$ and $f'(s)=f^{-1}(s)$. Then
+                \[
+                    [\bar{f}][f]=[f'][f]=[e_{x_0}]\implies [\bar{f}]=[f']
+                \]
+                It follows that
+                \[
+                    [f]*[g]*[\bar{f}]*[\bar{g}]=[(f*g)\otimes(f'*g')]=[e_{x_0}]\implies [f][g]=[g][f]
+                \]
+            \end{proof}
+        \end{itemize}
+    \end{ex}
     
     % --- Back Matter ---
     \printglossary
