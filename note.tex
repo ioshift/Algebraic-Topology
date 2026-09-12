@@ -1373,7 +1373,7 @@
     \begin{eg}
         \begin{itemize}
             \item Let $X$ be a convex subset of $\R^n$, then any two loops based at $x_0\in X$ are path homomorphic under the straight-line homotopy, implying that $\pi_1(X,x_0)$ is the trivial group containing a single element.
-            \item Let $X=S^2$. Then $\pi_1(X,x_0)=\set{[f_k]:k\in\Z}\cong\Z$ where $f_0$ is the constant loop; $f_k$ represents $k$ clockwise turns for $k>0$; $f_k$ represents $-k$ counterclockwise turns for $k<0$. 
+            \item Let $X=S^1$. Then $\pi_1(X,x_0)=\set{[f_k]:k\in\Z}\cong\Z$ where $f_0$ is the constant loop; $f_k$ represents $k$ clockwise turns for $k>0$; $f_k$ represents $-k$ counterclockwise turns for $k<0$. 
         \end{itemize}
     \end{eg}
     \bigskip
@@ -1409,11 +1409,11 @@
     \end{remark}
     \bigskip
 
-    \begin{defi}{Simple Connected}
-        A space $X$ is said to be \textbf{simple connected} if it is path connected and $\pi_1(X,x_0)$ is the trivial group, denoted $\pi_1(X,x_0)=0$, for some, and hence for all $x_0\in X$.
+    \begin{defi}{Simply Connected}
+        A space $X$ is said to be \textbf{simply connected} if it is path connected and $\pi_1(X,x_0)$ is the trivial group, denoted $\pi_1(X,x_0)=0$, for some, and hence for all $x_0\in X$.
     \end{defi}
     \begin{lemma}
-        The space $X$ is simply connected if and only if any two paths having the same initial and final points are path homotopic.
+        The path-connected space $X$ is simply connected if and only if any two paths having the same initial and final points are path homotopic.
     \end{lemma}
     \bigskip
 
@@ -1598,7 +1598,157 @@
             \end{proof}
         \end{itemize}
     \end{ex}
-    
+    \bigskip
+
+    \subsection{Covering Spaces}
+    \begin{defi}{Evenly Covered}
+        Let $p:E\to B$ be a continuous surjective map. The open set $U\subset B$ is \textbf{evenly covered} by $p$ if $p^{-1}(U)$ is the union of disjoint open sets of $V_\alpha$ on to $U$. The collection $\set{V_\alpha}$ is a partition of $p^{-1}(U)$ into \textbf{slices}.
+    \end{defi}
+    \begin{remark}
+        If $U$ is evenly covered by $p$ and $W$ is an open set contained in $U$, then $W$ is also evenly covered by $p$.
+    \end{remark}
+    \bigskip
+
+    \begin{defi}{Covering Map and Covering Space}
+        Let $p:E\to B$ be continuous and surjective. If every point $b$ of $B$ has a neighborhood $U$ that is evenly covered by $p$, then $p$ is called a \textbf{covering map}, and $E$ is said to be a \textbf{covering space} of $B$.
+    \end{defi}
+    \begin{remark}
+        If $p:E\to B$ is a covering map, then for each $b\in B$, $p^{-1}(\set{b})\subset E$ has the discrete topology. 
+    \end{remark}
+    \begin{remark}
+        If $p:E\to B$ is a covering map, then $p$ is an open map.
+    \end{remark}
+    \bigskip
+
+    \begin{eg}
+        The map $p:R\to S^1$ defined by $p(t)=e^{2\pi it}$ is a covering map.
+    \end{eg}
+    \bigskip
+
+    \begin{defi}{Local Homeomorphism}
+        $p:E\to B$ is called a \textbf{local homemorphism} of $E$ with $B$ if each $e\in E$ has a neighborhood $U$ such that $U$ is homeomorphic to $p(U)$ open in $B$.
+    \end{defi}  
+    \begin{remark}
+        Every covering map is a local homemorphism.
+    \end{remark}
+    \bigskip
+
+    \begin{eg}
+        $p:\R^+\to S^1$ defined by $p(x)=e^{2\pi ix}$ is a local homeomorphism but not a covering map.
+    \end{eg}
+    \bigskip
+
+    \begin{thm}
+        Let $p:E\to B$ be a covering map. Let $B_0\subset B$ and $E_0=p^{-1}(B_0)$, then the map $p_0=p|_{E_0}$ is a covering map.
+    \end{thm}
+    \bigskip
+
+    \begin{thm}
+        Let $p:E\to B$ and $p':E'\to B'$ be covering maps, then
+        \[
+            p\times p':E\times E'\to B\times B'
+        \]
+        is a covering map.
+    \end{thm}
+    \bigskip
+
+    \begin{ex}
+        Let $Y$ have the discrete topology. Show that the projection map $\pi_X:X\times Y\to X$ is a covering map.
+    \end{ex}
+    \begin{proof}
+        Since $\pi_X^{-1}(X)=\cup_{y\in Y}X\times\set{y}$ and each $X\times\set{y}$ is homeomorphic to $X$. Then we know $X$ is evenly covered by $\pi_X$. Continuity and surjectivity hold trivially. It follows that $\pi_X$ is a covering map.
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $p:E\to B$ be continuous and surjective. Let $U\subset B$ be open and evenly covered by $p$. Show that if $U$ is connected, then the partition of $p^{-1}(U)$ into slices is unique.
+    \end{ex}
+    \begin{proof}
+        We show that each component of $p^{-1}(U)$ is exactly a slice. Since each slice is homemoprhic to the connected space $U$, thus lying within a single component of $p^{-1}(U)$. If some slice is properly contained in a component, then that compoent is a union of disjoint nonempty open sets, thus being not connected. Therefore, each component is exactly a slice. 
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $p:E\to B$ be a covering map; let $B$ be connected. Show that if $\abs{p^{-1}(\set{b_0})}=k$ for some $b_0\in B$, then $\abs{p^{-1}(\set{b})}=k$ for all $b\in B$. In such case, $E$ is called a $k$-fold covering of $B$.
+    \end{ex}
+    \begin{proof}
+        For each $b\in B$, let $U_b$ is a neighborhood of $b$ which is evenly covered by $p$. Notice if $x,y\in U_b$ for some $b\in B$, each slice in $p^{-1}(U_b)$, being homeomorphic to $U_b$, contains exactly one point of $p^{-1}(\set{x})$ and $p^{-1}(\set{y})$, respectively. It follows that $\abs{p^{-1}(\set{x})}=\abs{p^{-1}(\set{y})}$.
+
+        Therefore, let $U=\set{b\in B:\abs{p^{-1}(\set{b})}=k}$, $b_0\in U$ so it's not empty. We then have
+        \[
+            \bigcup_{b\in U}U_b\subset U\implies U=\bigcup_{b\in U}U_b
+        \]
+        implying that $U$ is open. Let $x$ be a limit point of $U$, let $b\in U_x\cap U$, then
+        \[
+            b\in U\implies \abs{p^{-1}(\set{b})}=k\implies \abs{p^{-1}(\set{x})}=\abs{p^{-1}(\set{b})}=k\implies x\in U
+        \]
+        implying that $U$ is closed. Since $B$ is connected, it follows that $U=B$.
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $q:X\to Y$ and $r:Y\to Z$ be covering maps; let $p=r\circ q$. Show that if $r^{-1}(\set{z})$ is finite for each $z\in Z$, then $p$ is a covering map. 
+    \end{ex}
+    \begin{proof}
+        Let $p=r\circ q$. Since $q$ and $r$ are continuous and surjective,
+        so is $p$. Fix $z\in Z$, and write
+        \[
+            r^{-1}(\{z\})=\{y_1,\dots,y_n\}.
+        \]
+        Choose an open neighborhood $V$ of $z$ evenly covered by $r$.
+        Its slices can be indexed as $V_1,\dots,V_n$, with $y_i\in V_i$,
+        since each slice contains exactly one point of $r^{-1}(\{z\})$.
+        
+        For each $i$, choose an open neighborhood $U_i$ of $y_i$
+        evenly covered by $q$. Set
+        \[
+            W=\bigcap_{i=1}^n r(V_i\cap U_i).
+        \]
+        Since $r$ is open, then $r(V_i\cap U_i)$, implying that $W$ is an open neighborhood of $z$.
+        
+        Define
+        \[
+            W_i=r^{-1}(W)\cap V_i.
+        \]
+        Then the $W_i$ are pairwise disjoint open sets, and
+        \[
+            r^{-1}(W)=\bigcup_{i=1}^n W_i.
+        \]
+        Moreover, $r|_{W_i}:W_i\to W$ is a homeomorphism.
+        Since $W\subseteq r(V_i\cap U_i)$ and $r|_{V_i}$ is injective,
+        we have $W_i\subseteq U_i$.
+        
+        Each $W_i$ is therefore an open subset of an open set evenly
+        covered by $q$, so it is itself evenly covered by $q$. Write
+        \[
+            q^{-1}(W_i)=\bigcup_{\alpha\in J_i}W_{i,\alpha},
+        \]
+        where the $W_{i,\alpha}$ are pairwise disjoint open sets and
+        each restriction
+        \[
+            q|_{W_{i,\alpha}}:W_{i,\alpha}\to W_i
+        \]
+        is a homeomorphism.
+        
+        Consequently,
+        \[
+            p^{-1}(W)
+            =\bigcup_{i=1}^n q^{-1}(W_i)
+            =\bigcup_{i=1}^n\bigcup_{\alpha\in J_i}W_{i,\alpha}.
+        \]
+        These sets are mutually disjoint: for fixed $i$ they are distinct
+        $q$-slices, and for distinct $i$ they lie in the preimages of
+        disjoint sets $W_i$. On each one, the restriction
+        \[
+            p|_{W_{i,\alpha}}
+            =r|_{W_i}\circ q|_{W_{i,\alpha}}
+        \]
+        is a homeomorphism onto $W$.
+        
+        Thus $W$ is evenly covered by $p$. Since $z$ was arbitrary,
+        $p$ is a covering map.
+    \end{proof}
+
     % --- Back Matter ---
     \printglossary
     
