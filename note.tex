@@ -1412,7 +1412,7 @@
     \begin{defi}{Simply Connected}
         A space $X$ is said to be \textbf{simply connected} if it is path connected and $\pi_1(X,x_0)$ is the trivial group, denoted $\pi_1(X,x_0)=0$, for some, and hence for all $x_0\in X$.
     \end{defi}
-    \begin{lemma}
+    \begin{lemma}\label{1.2.7}
         The path-connected space $X$ is simply connected if and only if any two paths having the same initial and final points are path homotopic.
     \end{lemma}
     \bigskip
@@ -1602,7 +1602,7 @@
 
     \subsection{Covering Spaces}
     \begin{defi}{Evenly Covered}
-        Let $p:E\to B$ be a continuous surjective map. The open set $U\subset B$ is \textbf{evenly covered} by $p$ if $p^{-1}(U)$ is the union of disjoint open sets of $V_\alpha$ on to $U$. The collection $\set{V_\alpha}$ is a partition of $p^{-1}(U)$ into \textbf{slices}.
+        Let $p:E\to B$ be a continuous surjective map. The open set $U\subset B$ is \textbf{evenly covered} by $p$ if $p^{-1}(U)$ is the union of disjoint open sets of $V_\alpha\subset E$, such that $p|_{V_\alpha}$ is a homeomorphism of $V_\alpha$ onto $U$. The collection $\set{V_\alpha}$ is a partition of $p^{-1}(U)$ into \textbf{slices}.
     \end{defi}
     \begin{remark}
         If $U$ is evenly covered by $p$ and $W$ is an open set contained in $U$, then $W$ is also evenly covered by $p$.
@@ -1626,7 +1626,7 @@
     \bigskip
 
     \begin{defi}{Local Homeomorphism}
-        $p:E\to B$ is called a \textbf{local homemorphism} of $E$ with $B$ if each $e\in E$ has a neighborhood $U$ such that $U$ is homeomorphic to $p(U)$ open in $B$.
+        $p:E\to B$ is called a \textbf{local homeomorphism} of $E$ with $B$ if each $e\in E$ has a neighborhood $U$ such that $p|_U$ is a homeomorphism of $U$ onto $p(U)$ open in $B$.
     \end{defi}  
     \begin{remark}
         Every covering map is a local homemorphism.
@@ -1748,7 +1748,78 @@
         Thus $W$ is evenly covered by $p$. Since $z$ was arbitrary,
         $p$ is a covering map.
     \end{proof}
+    \bigskip
 
+    \subsection{The Fundamental Group of the Circle}
+    \begin{defi}{Lifting}
+        Let $p:E\to B$ be a map. If $f:X\to B$ is continuous, then a \textbf{lifting} of $f$ is a map $\Tilde{f}:X\to E$ such that $p\circ \Tilde{f}=f$.
+    \end{defi}
+    \begin{lemma}
+        Let $p:E\to B$ be a covering map, let $p(e_0)=b_0$. Any path $f:I\to B$ beginning at $b_0$ has a unique lifting to a path $\Tilde{f}$ in $E$ beginning at $e_0$.
+    \end{lemma}
+    \bigskip
+
+    \begin{lemma}
+        Let $p:E\to B$ be a covering map; let $p(e_0)=b_0$. Let the map $F:I\times I\to B$ be continuous, with $F(0,0)=b_0$. There is a unique lifting of $F$ to a continuous map
+        \[
+            \Tilde{F}:I\times I\to E
+        \]
+        such that $\Tilde{F}(0,0)=e_0$. If $F$ is a path hoomotopy, then $\Tilde{F}$ is a path homotopy.
+    \end{lemma}
+    \bigskip
+
+    \begin{thm}
+        Let $p:E\to B$ be a covering map; let $p(e_0)=b_0$. Let $f$ and $g$ be two paths in $B$ from $b_0$ to $b_1$; let $\bar{f}$ and $\bar{g}$ be their respective liftings to paths in $E$ beginning at $e_0$. If $f$ and $g$ are path homotopic, then $\bar{f}$ and $\bar{g}$ are path homotopic as well.
+    \end{thm}
+    \bigskip
+
+    \begin{defi}{Lifting Correspondence}
+        Let $p:E\to B$ be a covering map; let $b_0\in B,e_0\in E$ such that $p(e_0)=b_0$. Given $[f]\in\pi_1(B,b_0)$, let $\bar{f}$ be the lifting of $f$ to a path in $E$ that begins at $e_0$. Then we define
+        \[
+            \phi:\pi_1(B,b_0)\to p^{-1}(b_0)
+        \]
+        by $\phi([f])=\bar{f}(1)$, called the \textbf{lifting correspondence}. 
+    \end{defi}
+    \bigskip
+
+    \begin{thm}\label{1.4.6}
+        Let $p:E\to B$ be a covering map; let $p(e_0)=b_0$. If $E$ is path connected, then the lifting correspondence
+        \[
+            \phi:\pi_1(B,b_0)\to p^{-1}(b_0)
+        \]
+        is surjective. If $E$ is simply connected, it is bijective.
+    \end{thm}
+    \begin{remark}
+        Injectivity is deduced directly from \hyperref[1.2.7]{Lemma 1.2.7}.
+    \end{remark}
+    \bigskip
+
+    \begin{thm}
+        The fundamental group of $S^1$ is isomorphic to the additive group of integers.
+    \end{thm}
+    \bigskip
+
+    \begin{thm}
+        Let $p:E\to B$ be a covering map; let $p(e_0)=b_0$.
+        \begin{itemize}
+            \item The homomorphism $p_*:\pi_1(E,e_0)\to \pi_1(B,b_0)$ is a monomorphism.
+            \item Let $H=p_*(\pi_1(E,e_0))$. The lifting correspondence $\phi$ induces an injective map
+            \[
+                \Phi:\pi_1(B,b_0)/H\to p^{-1}(b_0)
+            \]
+            which is bijective if $E$ is path-connected.
+            \item If $f$ is a loop in $B$ based at $b_0$, then $[f]\in H$ if and only if $f$ lifts to a loop in $E$ based at $e_0$.
+        \end{itemize}
+    \end{thm}
+    \bigskip
+
+    \begin{ex}
+        Let $p:E\to B$ be a covering map, with $E$ path connected. Show that if $B$ is simply connected, then $p$ is a homeomorphism.
+    \end{ex}
+    \begin{proof}
+        Since $\pi_1(B,b_0)$ is the trivial group. Then by \hyperref[1.4.6]{Theorem 1.4.6} we know $\abs{p^{-1}(b_0)}=1$ for all $b_0$ being surjectively mapped from a trivial group. It follows that $p$ is injective then bijective. Since $p$ is continuous open map, then $p$ is a homeomorphism. 
+    \end{proof}
+    
     % --- Back Matter ---
     \printglossary
     
