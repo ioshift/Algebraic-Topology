@@ -1357,6 +1357,9 @@
             \end{proof}
         \end{itemize}
     \end{ex}
+    \begin{remark}
+        A space is contractible would imply that space has trivial fundamental group. But $S^2$ has trivial fundamental group while being not contractible. 
+    \end{remark}
     \bigskip
 
     \subsection{The Fundamental Group}
@@ -1390,7 +1393,7 @@
     \end{defi}
     \bigskip
 
-    \begin{thm}
+    \begin{thm}\label{1.2.4}
         The map $\hat{\alpha}$ is a group isomorphism.
     \end{thm}
     \begin{cor}
@@ -1819,6 +1822,121 @@
     \begin{proof}
         Since $\pi_1(B,b_0)$ is the trivial group. Then by \hyperref[1.4.6]{Theorem 1.4.6} we know $\abs{p^{-1}(b_0)}=1$ for all $b_0$ being surjectively mapped from a trivial group. It follows that $p$ is injective then bijective. Since $p$ is continuous open map, then $p$ is a homeomorphism. 
     \end{proof}
+    \bigskip
+
+    \subsection{Deformation Retracts and Homotopy Type}
+    \begin{lemma}
+        Let $h,k:(X,x_0)\to (Y,y_0)$. If $h$ and $k$ are homotopic with homotopy $F:X\times I\to Y$, and if $F(x_0,t)=y_0$ for all $t\in I$. Then the homomorphisms $h_*$ and $k_*$ are equal.
+    \end{lemma}
+    \bigskip
+
+    \begin{thm}
+        The inclusion map $j:S^n\to R^{n+1}\setminus\set{0}$ induces an isomorphism of fundamental groups.
+    \end{thm}
+    \bigskip
+
+    \begin{defi}{Deformation Retract and Deformation Retraction}
+        Let $A$ be a subspace of $X$. We say that $A$ is a \textbf{deformation retract} of $X$ if there is a continuous map $H:X\times I\to X$ such that $H(x,0)=x,H(x,1)\in A$ for all $x\in X$, and $H(a,t)=a$ for all $a\in A,t\in I$. Then $H$ is called a \textbf{deformation retraction} of $X$ onto $A$.
+    \end{defi}
+    \begin{remark}
+        Let $r:X\to A$ defined by $r(x)=H(x,1)$ be a retraction. Then $H$ is the homotopy between $\id_X$ and $j\circ r$, where $j:A\to X$ is inclusion.
+    \end{remark}
+    \begin{thm}
+        Let $A$ be a deformation retract of $X$; let $x_0\in A$. Then the inclusion map
+        \[
+            j:(A,x_0)\to (X,x_0)
+        \]
+        induces an isomorphism of fundamental groups.
+    \end{thm}
+    \bigskip
+
+    \begin{defi}{Homotopy Equivalences and Homotopy Inverse}
+        Let $f:X\to Y$ and $g:X\to Y$ be continuous maps. Suppose that the map $g\circ f:X\to X$ is homotopic to the identity map of $X$, and the map $f\circ g:Y\to Y$ is homotopic to the identity map of $Y$. Then the maps $f$ and $g$ are called \textbf{homotopy equivalences}, and each is said to be a \textbf{homotopy inverse} of the other.
+    \end{defi}
+    \begin{remark}
+        One can observe that the relation of homotopy equivalence is an equivalence relation.
+    \end{remark}
+    \begin{defi}{Homotopy Type}
+         We call two spaces that are homotopy equivalent to have the same \textbf{homotopy type}. 
+    \end{defi}
+    \begin{remark}
+        If $A$ is a deformation retract of $X$, then $A$ has the same homotopy type as $X$
+    \end{remark}
+    \bigskip
+
+    \begin{lemma}
+        Let $h,k:X\to Y$ be continuous maps; let $h(x_0)=y_0$ and $k(x_0)=y_1$. If $h$ and $k$ are homotopic, there is a path $\alpha$ in $Y$ from $y_0$ to $y_1$ such that $k_*=\hat{a}\circ h_*$. Indeed, if $H:X\times I\to Y$ is the homotopy between $h$ and $k$, then $\alpha$ is the path $\alpha(t)=H(x_0,t)$.
+    \end{lemma}
+    \bigskip
+
+    \begin{cor}
+        Let $h,k:X\to Y$ be homotopic continuous maps; let $h(x_0)=y_0$ and $k(x_0)=y_1$. If $h_*$ is injective, or surjective, or trivial, so is $k_*$.
+    \end{cor}
+    \begin{remark}
+        $\hat{\alpha}$ is a group isomorphism by \hyperref[1.2.4]{Theorem 1.2.4}
+    \end{remark}
+    \begin{cor}
+        Let $h:X\to Y$. If $h$ is nulhomotopic, then $h_*$ is the trivial homomorphism.
+    \end{cor}
+    \bigskip
+
+    \begin{thm}\label{1.5.10}
+        Let $f:X\to Y$ be continuous; let $f(x_0)=y_0$. If $f$ is a homotopy equivalence, then
+        \[
+            f_*:\pi_1(X,x_0)\to \pi_1(Y,y_0)
+        \]
+        is an isomorphism.
+    \end{thm}
+    \bigskip
+
+    \begin{ex}
+        Determine for the following spaces whether their fundamental group is trivial, infinite cyclic, or isomorphic to the fundamental group of the figure eight.
+    \end{ex}
+    \begin{proof}
+        \begin{itemize}
+            \item The solid torus, $B^2\times S^1$: Infinite cyclic. It deformation retracts onto its core circle $\set{0}\times S^1$ by contracting each disk cross-section to its centre.
+            \item The torus $T$ with a point removed. Isomorphic to the fundamental group of the figure eight. The punctured square can be deformation retracted to its boundary, then folding opposite edges twices gives a figure eight.
+            \item The cylinder $S^1\times I$: Infinite cyclic. It deformation retracts onto $S^1\times\set{0}$. 
+            \item The infinite cylinder $S^1\times\R$. Similarly it can deformation retracts onto $S^1\times\set{0}$ with deformation retraction $H((u,v),t)=(u,(1-t)v)$.
+            \item $\R^3$ with the nonnegative $x,y,z$ axes deleted. Isomorphic to the fundamental group of the figure eight. Appplying the deformation retraction $c\mapsto\frac{c}{\norm{c}}$ gives the unit sphere with three holes. Then expanding a hole gives a bijection to the circle with two holes. Hence it's the same homotopy type as figure eight.
+        \end{itemize}
+        
+        The following subsets of $\R^2$.
+        \begin{itemize}
+            \item $\set{x:\norm{x}>1}$: Infinite cyclic.
+            \item $\set{x:\norm{x}\geq1}$: Infinite cyclic.
+            \item $\set{x:\norm{x}<1}$: Trivial.
+            \item $\set{S^1\cup\R^+\times\set{0}}$: Infinite cyclic. Points in $\R^+\times\set{0}$ maps to the point $(0,0)$.
+            \item $\set{S^1\cup\R^+\times\R}$: Infintie cyclic.
+            \item $S^1\cup\R\times\set{0}$: Isomorphic to the fundamental group of the figure eight.
+            \item $\R^2-\R^+\times\set{0}$: Trivial.
+        \end{itemize}
+    \end{proof}
+    \bigskip
+
+    \begin{ex}
+        Let $A$ be a subspace of $X$; let $j:A\to X$ be the inclusion map, and let $f:X\to A$ be a continuous map. Suppose there is a homotopy $H:X\times I\to X$ between the map $j\circ f$ and the identity map of $X$.
+        \begin{itemize}
+            \item Show that if $f$ is a retraction, then $j_*$ is an isomorphism.
+            \begin{proof}
+                If $f$ is a retraction, then $f\circ j=\id_A$ implying that $j,f$ are homotopy equivalences, hence $j_*$ is an isomorphism by \hyperref[1.5.10]{Theorem 1.5.10}
+            \end{proof}
+            \item Show that if $H$ maps $A\times I$ into $A$, then $j_*$ is an isomorphism.
+            \begin{proof}
+                We know $f\circ j=f|_A$, then consider $F:A\times I\to A$ defined by $F=H|_{A\times I}$. We have for $a\in A$, 
+                $$
+                F(a,0)=H(a,0)=j(f(a))=f(a)\aand F(a,1)=H(a,1)=a
+                $$
+                implying that $F$ is a homotopy from $f\circ j$ to $\id_A$. Hence $j,f$ are homotopy equivalences and then $j_*$ is an isomorphism.
+            \end{proof}
+            \item Give an example in which $j_*$ is not an isomorphism.
+            \begin{proof}
+                Let $A=S^1,X=\R^2$ and $f$ is a constant map. Then $j\circ f$ is a constant map, which is homotopic with $\id_X$. However, $j_*$ is not an isomorphism since the fundamental groups of $S^1$ and $\R^2$ are not isomorphic.
+            \end{proof}
+        \end{itemize}
+    \end{ex}
+    \bigskip
+
     
     % --- Back Matter ---
     \printglossary
