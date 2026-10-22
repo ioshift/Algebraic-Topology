@@ -1420,7 +1420,7 @@
     \end{lemma}
     \bigskip
 
-    \begin{defi}{Induced homomorphism}
+    \begin{defi}{Induced homomorphism}\addelement{$h_*$}
         We denote
         \[
             h:(X,x_0)\to (Y,y_0)
@@ -1937,6 +1937,14 @@
     \end{ex}
     \bigskip
 
+    \subsection{The Fundamental Group of $S^n$}
+    \begin{thm}
+        Suppose $X=U\cup V$, where $U$ and $V$ are open sets of $X$. Suppose that $U\cap V$ is path connected, and that $x_0\in U\cap V$. Define $i=\id_X|_U,j=\id_X|_V$. Then the images of the induced homomorphisms
+        \[
+            i_*:\pi_1(U,x_0)\to\pi_1(X,x_0)\aand j_*:\pi_1(V,x_0)\to \pi_1(X,x_0)
+        \]
+        generate $\pi_1(X,x_0)$.
+    \end{thm}
     % --- Back Matter ---
     \printglossary
     
