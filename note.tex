@@ -1851,7 +1851,7 @@
     \bigskip
 
     \begin{defi}{Homotopy Equivalences and Homotopy Inverse}
-        Let $f:X\to Y$ and $g:X\to Y$ be continuous maps. Suppose that the map $g\circ f:X\to X$ is homotopic to the identity map of $X$, and the map $f\circ g:Y\to Y$ is homotopic to the identity map of $Y$. Then the maps $f$ and $g$ are called \textbf{homotopy equivalences}, and each is said to be a \textbf{homotopy inverse} of the other.
+        Let $f:X\to Y$ and $g:Y\to X$ be continuous maps. Suppose that the map $g\circ f:X\to X$ is homotopic to the identity map of $X$, and the map $f\circ g:Y\to Y$ is homotopic to the identity map of $Y$. Then the maps $f$ and $g$ are called \textbf{homotopy equivalences}, and each is said to be a \textbf{homotopy inverse} of the other.
     \end{defi}
     \begin{remark}
         One can observe that the relation of homotopy equivalence is an equivalence relation.
@@ -1924,9 +1924,9 @@
             \item Show that if $H$ maps $A\times I$ into $A$, then $j_*$ is an isomorphism.
             \begin{proof}
                 We know $f\circ j=f|_A$, then consider $F:A\times I\to A$ defined by $F=H|_{A\times I}$. We have for $a\in A$, 
-                $$
-                F(a,0)=H(a,0)=j(f(a))=f(a)\aand F(a,1)=H(a,1)=a
-                $$
+                \[
+                    F(a,0)=H(a,0)=j(f(a))=f(a)\aand F(a,1)=H(a,1)=a
+                \]
                 implying that $F$ is a homotopy from $f\circ j$ to $\id_A$. Hence $j,f$ are homotopy equivalences and then $j_*$ is an isomorphism.
             \end{proof}
             \item Give an example in which $j_*$ is not an isomorphism.
@@ -1945,6 +1945,222 @@
         \]
         generate $\pi_1(X,x_0)$.
     \end{thm}
+    \begin{remark}
+        The theorem tells that any loop in $X$ based at $x_0$ is path homotopic to a combination of loops in either $U$ or $V$ based at $x_0$.
+    \end{remark}
+    \begin{remark}
+        The key point is that any loop in $X$ based at $x_0$ can be split into paths completely in $U$ or $V$, using the Lebesgue number lemma.
+    \end{remark}
+    \bigskip
+
+    \begin{cor}
+        Suppose $X=U\cup V$, where $U$ and $V$ are open sets of $X$; suppose $U\cap V$ is nonempty and path connected. If $U$ and $V$ are simply connected, then $X$ is simply connected.
+    \end{cor}
+    \bigskip
+
+    \begin{defi}{$n$-sphere}
+        The \textbf{$n$-sphere} $S^n$ is the subspace of $\R^{n+1}$ defined by
+        \[
+            S^n=\set{(x_1,\dots,x_{n+1})\in\R^{n+1}:x_1^2+\cdots+x_{n+1}^2=1}
+        \]
+    \end{defi}
+
+    \begin{defi}{Stereographic Projection}
+        Let $p=(0,\dots,0,1)\in S^n\subset\R^{n+1}$, then the function $f:(S^n-p)\to\R^n$ defined by
+        \[
+            f(x_1,\dots,x_{n+1})=\frac{1}{1-x_{n+1}}(x_1,\dots,x_n)
+        \]
+        is a homeomorphism, called the \textbf{stereographic projection}.
+
+        Therefore, the punctured sphere $S^n-p$ is homeomorphic to $\R^n$.
+    \end{defi}
+    \bigskip
+    
+    \begin{thm}
+        If $n\geq 2$, the $n$-sphere is simply connected.
+    \end{thm}
+    \bigskip
+
+    \begin{ex}
+        Let $X$ be the union of two copies of $S^2$ having a single point in common. What is the fundamental group of $X$?
+    \end{ex}
+    \begin{proof}
+        Write $X=S_1\cup S_2$, where $S_1,S_2\cong S^2$ and
+        $S_1\cap S_2=\{P\}$. We show that every loop based at $P$
+        is nulhomotopic, which implies that the fundamental group of $X$ is the trivial group.
+        
+        Choose $q_i\in S_i\setminus\{P\}$ and homeomorphisms
+        \[
+            \phi_i:U_i:=S_i\setminus\{q_i\}\longrightarrow\R^2,
+            \qquad \phi_i(P)=0.
+        \]
+        Set $U=U_1\cup U_2=X\setminus\{q_1,q_2\}$. Define
+        \[
+            C(x,t)=\phi_i^{-1}\bigl((1-t)\phi_i(x)\bigr)
+            \qquad (x\in U_i,\ t\in I),
+        \]
+        where $I=[0,1]$. The two formulas agree at $P$, and
+        $U_1,U_2$ are closed in $U$. Hence the pasting lemma
+        shows that $C:U\times I\to U$ is continuous. Moreover,
+        \[
+            C(x,0)=x,\qquad C(x,1)=P,\qquad C(P,t)=P.
+        \]
+        
+        Let $f:I\to X$ be a loop based at $P$, and put
+        \[
+            F=f^{-1}(\{P\}),\qquad
+            D=f^{-1}(\{q_1,q_2\}).
+        \]
+        The components of $I\setminus F$ are disjoint open intervals
+        $(a,b)$, with $f(a)=f(b)=P$. By connectedness, the image
+        of each such interval lies entirely in one of
+        $S_1\setminus\{P\}$ or $S_2\setminus\{P\}$. Thus
+        $f|_{[a,b]}$ is a loop in one sphere.
+        
+        Only finitely many of these intervals meet $D$. Indeed,
+        if $D\ne\varnothing$, then the disjoint compact sets
+        $F,D\subseteq I$ have positive distance $\delta$.
+        Any component $(a,b)$ meeting $D$ consequently has
+        length at least $\delta$, and there can be only finitely
+        many disjoint intervals of that length in $I$.
+        
+        Denote these exceptional intervals by
+        $(a_1,b_1),\ldots,(a_m,b_m)$. Since each sphere is simply
+        connected, choose a nulhomotopy
+        \[
+            H_j:[a_j,b_j]\times I\longrightarrow X
+        \]
+        of $f|_{[a_j,b_j]}$ that fixes both endpoints at $P$.
+        
+        Set
+        \[
+            K=I\setminus\bigcup_{j=1}^m(a_j,b_j).
+        \]
+        Then $K$ is closed and $f(K)\subseteq U$. Define
+        \[
+            H(s,t)=
+            \begin{cases}
+                H_j(s,t), & s\in[a_j,b_j],\\
+                C(f(s),t), & s\in K.
+            \end{cases}
+        \]
+        These definitions agree on every overlap, since all
+        endpoint values remain $P$. The sets
+        $K\times I$ and $[a_j,b_j]\times I$ form a finite closed
+        cover of $I\times I$, so the pasting lemma proves that
+        $H$ is continuous. Finally,
+        \[
+            H(s,0)=f(s),\qquad H(s,1)=P,\qquad
+            H(0,t)=H(1,t)=P.
+        \]
+        Therefore $f$ is path homotopic to the constant loop.
+        Since $X$ is path connected, its fundamental group is trivial.
+    \end{proof}    
+    \begin{remark}
+        It should be noted that the union of two simply connected spaces having a point in common is not necessarily simply connected. Consider
+        \[
+            E=\bigcup_{n=1}^{\infty}C_n\subseteq\R^2\times\{0\},
+        \]
+        where $C_n$ has centre $(1/n,0,0)$ and radius $1/n$.
+        Let $P=(0,0,0)$, $A=(0,0,1)$, and define
+        \[
+            Y=\bigcup_{x\in E}[x,A],\qquad Y'=-Y.
+        \]
+        Thus $Y$ contains a complete conical side surface over
+        each base circle; the planar base disks are not filled in.
+        Each cone is contractible towards its own apex, and
+        $Y\cap Y'=\{P\}$. Nevertheless, $Y\cup Y'$ is not simply
+        connected.
+        
+        Let $\alpha_n$ traverse $C_n$ and let $\beta_n$ traverse
+        its reflected circle, both based at $P$. The infinite
+        alternating concatenation
+        \[
+            \gamma=\alpha_1*\beta_1*\alpha_2*\beta_2*\cdots,
+        \]
+        traversed on successive intervals accumulating at $1$,
+        is continuous because the circles shrink towards $P$.
+        This loop is not nulhomotopic.
+        
+        Individually, each $\alpha_n$ can be deformed, with
+        basepoint fixed, into the path $PA$ followed by $AP$,
+        and then contracted to $P$. The corresponding statement
+        holds for $\beta_n$ using the lower apex $B=-A$.
+        However, these individual homotopies cannot simply be
+        performed simultaneously on all the subdivision intervals.
+        At the stage when the upper pieces have become $PA*AP$,
+        there are parameters $s_n\to1$ whose images are all $A$,
+        whereas the value at $1$ remains $P$. The resulting
+        intermediate path is therefore discontinuous at $1$.
+        
+        The essential requirement is that shrinking excursions
+        admit shrinking nulhomotopies: if their images approach
+        $P$, their entire contractions must remain uniformly
+        close to $P$. For the spheres, the fixed punctured-sphere
+        charts provide precisely this control. The contractions
+        through the cone apices do not: however small a base
+        circle becomes, its chosen contraction still reaches
+        an apex a fixed distance from $P$.
+        
+        This explains the failure of the proposed piecewise
+        contraction. The non-nulhomotopy of $\gamma$ is a
+        separate substantive property of Griffiths' example;
+        it does not follow merely from the failure of that
+        particular contraction.
+    \end{remark}
+    \bigskip
+
+    \begin{ex}
+        Criticize the following `proof' that $S^2$ is simply connected:
+        \begin{quote}
+            Let $f$ be a loop in $S^2$ based at $x_0$. Choose a point $p$ of $S^2$ not lying in the image of $f$. Since $S^2-p$ is homeomorphic with $\R^2$ and $\R^2$ is simply connected, the loop $f$ is then path homotopic to the constant loop.
+        \end{quote}
+    \end{ex}
+    \begin{proof}
+        Let $f:I\to I^2$ be the Peano space-filling curve such that
+        \[
+            f(0)=(0,0)\aand f(1)=(0,1)
+        \]
+        \[
+            f(I)=I^2
+        \]
+        Then consider $g:I^2\to S^2$ be a suejective continuous map defined by
+        \[
+            g(x,t)=(2\sqrt{x(1-x)}\sin (2\pi t),2\sqrt{x(1-x)}\cos (2\pi t),2x-1)
+        \]
+        Then $g\circ f:I\to S^2$ is a surjective continuous loop based at $(0,0,-1)$, which implies that the point $p$ does not necessarily exist.
+    \end{proof}
+
+    \begin{ex}
+        \begin{itemize}
+            \item Show that $\R^1$ and $\R^n$ are not homeomorphic if $n>1$.
+            \begin{proof}
+                Since the punctured $\R^1-x$ is not path connected while any punctured $\R^n-y$ is path connected for $n>1$, then $\R^1$ is not homeomorphic to $\R^n$ for $n>1$.
+            \end{proof}
+            \item Show that $\R^2$ and $\R^n$ are not homeomorphic if $n>2$.
+            \begin{proof}
+                Notice the punctured $\R^2-x$ can be deformation retracted to $S^1$ with the fundamental group isomorphic to $\Z$; while the punctured $\R^n-y$ for $n>2$ can be deformation retracted to $S^{n-1}$ with trivial fundamental group. So the fundamental group of $\R^2-x$ and $\R^n-y$ is different implies that $\R^2$ is not homeomorphic to $\R^n$ for $n>2$.
+            \end{proof}
+        \end{itemize}
+    \end{ex}
+    \bigskip
+
+    \begin{ex}
+         Suppose $X=U\cup V$, where $U$ and $V$ are open sets of $X$. Suppose that $U\cap V$ is path connected, and that $x_0\in U\cap V$. Define $i=\id_X|_U,j=\id_X|_V$.
+         \begin{itemize}
+             \item What can you say about the fundamental group of $X$ if $j_*$ is the trivial homomorphism? If both $i_*$ and $j_*$ are trivial?
+             \begin{proof}
+                 If $j_*$ is the trivial homomorphism, then the image of $j_*$ is $\set{e}$, it follows that the fundamental group of $X$ is isomorphic to the image of $i_*$. If both $i_*$ and $j_*$ are both trivial, then the fundamental group of $X$ is trivial.
+             \end{proof}
+             \begin{remark}
+                 It should be noted that the image of $i_*$ may be different from the fundamental group of $U$. The next subquestion is a typical example.
+             \end{remark}
+             \item Give an example where $i_*$ and $j_*$ are trivial but neither $U$ nor $V$ have trivial fundamental groups.
+             \begin{proof}
+                 Consider $X=\R^2$, $p=(0,1)\in\R^2,q=(1,0)\in\R^2$. Then let $U=X-p$ and $V=X-q$ we have both $i_*$ and $j_*$ are trivial but both $U$ and $V$ have fundamental groups isomorphic to $\Z$.
+             \end{proof}
+         \end{itemize}
+    \end{ex}
     % --- Back Matter ---
     \printglossary
     
